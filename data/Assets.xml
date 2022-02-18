@@ -1,0 +1,70 @@
+<Assets>
+  <Property>
+    <assetCode>CA20</assetCode>
+    <label>John Elway Rookie Card</label>
+    <appraisalValue>600.0</appraisalValue>
+  </Property>
+  <Property>
+    <assetCode>CA21</assetCode>
+    <label>Michael Jordan Rookie Card</label>
+    <appraisalValue>50000.0</appraisalValue>
+  </Property>
+  <Property>
+    <assetCode>CA22</assetCode>
+    <label>Tim Tebow Rookie Card</label>
+    <appraisalValue>5.0</appraisalValue>
+  </Property>
+  <Property>
+    <assetCode>CA23</assetCode>
+    <label>Tom Brady Rookie Card</label>
+    <appraisalValue>4000.0</appraisalValue>
+  </Property>
+  <Stock>
+    <assetCode>STK40</assetCode>
+    <label>Tesla</label>
+    <symbol>TSLA</symbol>
+    <sharePrice>860.0</sharePrice>
+  </Stock>
+  <Stock>
+    <assetCode>STK41</assetCode>
+    <label>Nike</label>
+    <symbol>NKE</symbol>
+    <sharePrice>140.18</sharePrice>
+  </Stock>
+  <Stock>
+    <assetCode>STK42</assetCode>
+    <label>T-Mobile</label>
+    <symbol>TMUS</symbol>
+    <sharePrice>124.48</sharePrice>
+  </Stock>
+  <Stock>
+    <assetCode>STK43</assetCode>
+    <label>Walmart</label>
+    <symbol>WMT</symbol>
+    <sharePrice>135.33</sharePrice>
+  </Stock>
+  <Crypto>
+    <assetCode>CRPT00</assetCode>
+    <label>Litecoin</label>
+    <exchangeRate>124.37</exchangeRate>
+    <exchangeFeeRate>1.0</exchangeFeeRate>
+  </Crypto>
+  <Crypto>
+    <assetCode>CRPT01</assetCode>
+    <label>Ethereum </label>
+    <exchangeRate>2931.06</exchangeRate>
+    <exchangeFeeRate>1.5</exchangeFeeRate>
+  </Crypto>
+  <Crypto>
+    <assetCode>CRPT02</assetCode>
+    <label>Bitcoin</label>
+    <exchangeRate>42232.16</exchangeRate>
+    <exchangeFeeRate>1.5</exchangeFeeRate>
+  </Crypto>
+  <Crypto>
+    <assetCode>CRPT03</assetCode>
+    <label>Dogecoin</label>
+    <exchangeRate>0.1447</exchangeRate>
+    <exchangeFeeRate>2.0</exchangeFeeRate>
+  </Crypto>
+</Assets>

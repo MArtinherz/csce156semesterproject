@@ -8,7 +8,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class DataConverter {
 //	private void loadPersons() {
 //		Scanner s = null;
 //		try {
-//			s = new Scanner(new File("Data/Persons.csv"));
+//			s = new Scanner(new File("data/Persons.csv"));
 //		}
 //		catch (FileNotFoundException e) {
 //			throw new RuntimeException(e);
@@ -134,9 +133,7 @@ public class DataConverter {
 			else {
 				throw new RuntimeException("Asset code invalid");
 			}
-		s.close();
 		}
-		
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
@@ -160,7 +157,7 @@ public class DataConverter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		s.close();
 	}
 	
 	public static void main(String[] args) {

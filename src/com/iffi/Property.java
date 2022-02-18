@@ -1,8 +1,6 @@
 package com.iffi;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
 
-@XStreamAlias("Property")
 /**
  * This is our Property class.
  * This stores in the data for any type of Property asset

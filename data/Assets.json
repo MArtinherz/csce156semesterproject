@@ -1,0 +1,72 @@
+{
+  "assets": [
+    {
+      "appraisalValue": 600.0,
+      "assetCode": "CA20",
+      "label": "John Elway Rookie Card"
+    },
+    {
+      "appraisalValue": 50000.0,
+      "assetCode": "CA21",
+      "label": "Michael Jordan Rookie Card"
+    },
+    {
+      "appraisalValue": 5.0,
+      "assetCode": "CA22",
+      "label": "Tim Tebow Rookie Card"
+    },
+    {
+      "appraisalValue": 4000.0,
+      "assetCode": "CA23",
+      "label": "Tom Brady Rookie Card"
+    },
+    {
+      "symbol": "TSLA",
+      "sharePrice": 860.0,
+      "assetCode": "STK40",
+      "label": "Tesla"
+    },
+    {
+      "symbol": "NKE",
+      "sharePrice": 140.18,
+      "assetCode": "STK41",
+      "label": "Nike"
+    },
+    {
+      "symbol": "TMUS",
+      "sharePrice": 124.48,
+      "assetCode": "STK42",
+      "label": "T-Mobile"
+    },
+    {
+      "symbol": "WMT",
+      "sharePrice": 135.33,
+      "assetCode": "STK43",
+      "label": "Walmart"
+    },
+    {
+      "assetCode": "CRPT00",
+      "label": "Litecoin",
+      "exchangeRate": 124.37,
+      "exchangeFeeRate": 1.0
+    },
+    {
+      "assetCode": "CRPT01",
+      "label": "Ethereum ",
+      "exchangeRate": 2931.06,
+      "exchangeFeeRate": 1.5
+    },
+    {
+      "assetCode": "CRPT02",
+      "label": "Bitcoin",
+      "exchangeRate": 42232.16,
+      "exchangeFeeRate": 1.5
+    },
+    {
+      "assetCode": "CRPT03",
+      "label": "Dogecoin",
+      "exchangeRate": 0.1447,
+      "exchangeFeeRate": 2.0
+    }
+  ]
+}

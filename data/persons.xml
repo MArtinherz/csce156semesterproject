@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persons>
+  <person>
+    <personCode>A01F</personCode>
+    <firstName>Michael</firstName>
+    <lastName>Jordan</lastName>
+    <address>
+      <street>1717 Goat Drive</street>
+      <city>Chicago</city>
+      <state>IL</state>
+      <zipCode>60608</zipCode>
+      <country>USA</country>
+    </address>
+    <emails>MJ@gmail.com</emails>
+  </person>
+  <person>
+    <personCode>B02G</personCode>
+    <firstName>Sarah</firstName>
+    <lastName>Smith</lastName>
+    <address>
+      <street>7935 Yankee Hill Rd</street>
+      <city>Omaha</city>
+      <state>NE</state>
+      <zipCode>68516</zipCode>
+      <country>USA</country>
+    </address>
+    <emails>sarahsmith@yahoo.com</emails>
+    <emails>sarahsmith@gmail.com</emails>
+  </person>
+  <person>
+    <personCode>C03H</personCode>
+    <firstName>Lebron</firstName>
+    <lastName>James</lastName>
+    <address>
+      <street>666 Flop Circle</street>
+      <city>Cleveland</city>
+      <state>OH</state>
+      <zipCode>67561</zipCode>
+      <country>USA</country>
+    </address>
+    <emails>LeJames@huskers.unl.edu</emails>
+  </person>
+  <person>
+    <personCode>D04J</personCode>
+    <firstName>Katie</firstName>
+    <lastName>Tebow</lastName>
+    <address>
+      <street>4365 Mile Ct</street>
+      <city>Denver</city>
+      <state>CO</state>
+      <zipCode>USA</zipCode>
+      <country>68791</country>
+    </address>
+    <emails/>
+  </person>
+</persons>

@@ -1,0 +1,63 @@
+{
+  "persons": [
+    {
+      "personCode": "A01F",
+      "firstName": "Michael",
+      "lastName": "Jordan",
+      "address": {
+        "street": "1717 Goat Drive",
+        "city": "Chicago",
+        "state": "IL",
+        "zipCode": 60608,
+        "country": "USA"
+      },
+      "emails": [
+        "MJ@gmail.com"
+      ]
+    },
+    {
+      "personCode": "B02G",
+      "firstName": "Sarah",
+      "lastName": "Smith",
+      "address": {
+        "street": "7935 Yankee Hill Rd",
+        "city": "Omaha",
+        "state": "NE",
+        "zipCode": 68516,
+        "country": "USA"
+      },
+      "emails": [
+        "sarahsmith@yahoo.com",
+        "sarahsmith@gmail.com"
+      ]
+    },
+    {
+      "personCode": "C03H",
+      "firstName": "Lebron",
+      "lastName": "James",
+      "address": {
+        "street": "666 Flop Circle",
+        "city": "Cleveland",
+        "state": "OH",
+        "zipCode": 67561,
+        "country": "USA"
+      },
+      "emails": [
+        "LeJames@huskers.unl.edu"
+      ]
+    },
+    {
+      "personCode": "D04J",
+      "firstName": "Katie",
+      "lastName": "Tebow",
+      "address": {
+        "street": "4365 Mile Ct",
+        "city": "Denver",
+        "state": "CO",
+        "zipCode": "USA",
+        "country": 68791
+      },
+      "emails": []
+    }
+  ]
+}

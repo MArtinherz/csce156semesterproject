@@ -1,7 +1,10 @@
 package com.iffi;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class personsList {
-  private List<Object> persons;
+	private List<Object> persons;
 	
 	public personsList () {
 		this.persons = new ArrayList<Object>();

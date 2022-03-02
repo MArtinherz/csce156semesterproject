@@ -1,6 +1,15 @@
 package com.iffi;
 
-
+/**
+ * This is our Property class.
+ * This stores in the data for any type of Property asset
+ * And extends off the Asset class
+ * 
+ * @author Martin Herz 
+ * @author Michael Endacott
+ * Date: 2022/02/19
+ *
+ */
 import java.io.File;
 
 import java.io.FileNotFoundException;
@@ -23,23 +32,33 @@ import com.thoughtworks.xstream.XStream;
  * 
  */
 
+//imports xml converter library
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
-public class dataConverter {
+public class DataConverter{
 
 	private final List<Object> AllPersons = new ArrayList<Object>();
 	private personsList personsList;
 	private final List<Object> AllAssets = new ArrayList<Object>();
 	private Assets Assets;
 	
-	public dataConverter(){
+	
+	public DataConverter(){
 		this.personsList = new personsList();
 		this.Assets = new Assets();
-		loadpersonsList();
+		loadPersons();
 		loadAssets();
 	}
 	
+	/**
+	 * 
+	 * This is our Persons Parser. We load in the assets .csv file
+	 * And returns an asset data file stored in json and xml format.
+	 * 
+	 * 
+	 */
 	private void loadPersons() {
+	//opens a scanner with a try catch block 
 	Scanner s = null;
 	try {
 		s = new Scanner(new File("Data/Persons.csv"));
@@ -49,8 +68,9 @@ public class dataConverter {
 	}
 	String firstLine = s.nextLine();
 	String findTotal [] = firstLine.split(",");
+	//reads the first line of csv file to count number of lines
 	int count = Integer.parseInt(findTotal[0]);
-	
+	//iterates through the file tokenizing data for every line
 	for(int i = 0; i < count; i++) {
 			String line = s.nextLine();
 			String tokens[] = line.split(",");
@@ -62,21 +82,22 @@ public class dataConverter {
 			String state = tokens[5];
 			String zip = tokens[6];
 			String country = tokens[7];
-			
-			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country);
-			personsList.addperson(p);
-			AllPersons.add(p);
-			
-			if(line.isBlank() != true) {
-			String email = tokens[8];
-			personsList.persons.addEmail(email);
-			AllPersons.add(email);
+			List<String> emails = new ArrayList<String>();
+			for(int j = 8; j<tokens.length; j++) {
+				String email = tokens[j];
+				emails.add(email);
 			}
-			else {
-				}
+			
+			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country,emails);
+			personsList.addPerson(p);
+			AllPersons.add(p);
+		
 			
 		}
-	
+		//closes the scanner
+		s.close();
+		
+		//calls the .json converter 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
 			Writer writer = Files.newBufferedWriter(Paths.get("data/Persons.json"));
@@ -85,6 +106,7 @@ public class dataConverter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//calls the .xml converter
 		XStream xstream = new XStream(new DomDriver());
 		
 		xstream.alias("PersonsList", List.class);
@@ -96,7 +118,7 @@ public class dataConverter {
 			e.printStackTrace();
 		}
 	}
-}
+
 		
 		
 	/**
@@ -117,11 +139,13 @@ public class dataConverter {
 		}
 		String firstLine = s.nextLine();
 		String findTotal [] = firstLine.split(",");
+		//reads the first line of csv file to count number of lines
 		int count = Integer.parseInt(findTotal[0]);
-		
+		//iterates through the file tokenizing data for every line
 		for(int i = 0; i < count; i++) {
 			String line = s.nextLine();
 			String tokens[] = line.split(",");
+			//reads code of the asset to determine category of asset
 			if(tokens[1].equals("P")){
 				String code = tokens[0];
 				String label = tokens[2];
@@ -151,14 +175,16 @@ public class dataConverter {
 				AllAssets.add(p);
 			}
 			
-			
+			//throws an error if asset is not a S,C, or P
 			else {
 				throw new RuntimeException("Asset code invalid");
 			}
 		
 		}
+		//closes the scanner
+		s.close();
 		
-		
+		//calls the .json converter 
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		try {
 			Writer writer = Files.newBufferedWriter(Paths.get("data/Assets.json"));
@@ -167,6 +193,7 @@ public class dataConverter {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//calls the .xml converter
 		XStream xstream = new XStream(new DomDriver());
 		
 		xstream.alias("Property", Property.class);
@@ -182,9 +209,10 @@ public class dataConverter {
 		}
 		
 	}
-	
+
+	//calls the DataConverter function to run the program 
 	public static void main(String[] args) {
-		dataConverter demo = new dataConverter();
+		DataConverter demo = new DataConverter();
     }
 
 

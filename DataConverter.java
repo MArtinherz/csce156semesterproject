@@ -48,8 +48,28 @@ public class DataConverter{
 		this.Assets = new Assets();
 		loadPersons();
 		loadAssets();
+		jsonAssets(Assets);
+		jsonPersons(personsList);
+		xmlAssets(AllAssets);
+		xmlPersons(AllPersons);
 	}
 	
+	private void xmlPersons(List<Object> allPersons2) {
+		
+	}
+
+	private void xmlAssets(List<Object> allAssets2) {
+		
+	}
+
+	private void jsonPersons(com.iffi.personsList personsList2) {
+		
+	}
+
+	private void jsonAssets(com.iffi.Assets assets2) {
+		
+	}
+
 	/**
 	 * 
 	 * This is our Persons Parser. We load in the assets .csv file
@@ -97,26 +117,6 @@ public class DataConverter{
 		//closes the scanner
 		s.close();
 		
-		//calls the .json converter 
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try {
-			Writer writer = Files.newBufferedWriter(Paths.get("data/Persons.json"));
-			gson.toJson(personsList, writer);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//calls the .xml converter
-		XStream xstream = new XStream(new DomDriver());
-		
-		xstream.alias("PersonsList", List.class);
-		
-	
-		try {
-			xstream.toXML(AllPersons, new FileWriter("data/Persons.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 		
@@ -184,35 +184,12 @@ public class DataConverter{
 		//closes the scanner
 		s.close();
 		
-		//calls the .json converter 
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try {
-			Writer writer = Files.newBufferedWriter(Paths.get("data/Assets.json"));
-			gson.toJson(Assets, writer);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		//calls the .xml converter
-		XStream xstream = new XStream(new DomDriver());
-		
-		xstream.alias("Property", Property.class);
-		xstream.alias("Stock", Stock.class);
-		xstream.alias("Crypto", Crypto.class);
-		xstream.alias("Assets", List.class);
-		
-
-		try {
-			xstream.toXML(AllAssets, new FileWriter("data/Assets.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 	}
 
 	//calls the DataConverter function to run the program 
 	public static void main(String[] args) {
 		DataConverter demo = new DataConverter();
+	
     }
 
 

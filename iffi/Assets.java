@@ -15,20 +15,18 @@ import java.util.Map;
  *
  */
 
-public class Assets {
+public class Assets <Asset>{
 	
-	private Map<String, Double> assetCurrentPrices;
+	private List clientAssets;
 	
 	public Assets() {
-		this.assetCurrentPrices = new HashMap<String, Double>();
+		this.clientAssets = new ArrayList();
 	}
 
-	public Map<String, Double> getAssetList() {
-		return Map.copyOf(this.assetCurrentPrices);
-	}
+
 	
-	public void addAsset(String assetCode, double currentPrice) {
-		this.assetCurrentPrices.put(assetCode, currentPrice);
+	public void addAsset(Asset t) {
+		this.clientAssets.add(t);
 	}
 
 

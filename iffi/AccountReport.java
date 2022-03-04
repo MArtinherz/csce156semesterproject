@@ -2,11 +2,7 @@ package com.iffi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,20 +10,30 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
+
+/**
+ * 
+ * 
+ * This is our AccountReport class, which reads through all four .csv files
+ * And then outputs a summary report of all accounts and an individual report of each account's info along with stocks
+ * 
+ * @author Martin Herz, Michael Endacott
+ *
+ */
+
 
 public class AccountReport{
 	
 	private final Map<String, Person> persons = new HashMap<String, Person>();
 	private final Map<String, Asset> assets = new HashMap<String, Asset>();
+	private final List<Account> accounts = new ArrayList();
 	
 	public AccountReport(){
 		loadPersons();
 		loadAssets();
 		loadAccounts();
+		summaryReports();
+		individualReports();
 	}
 	
 	/**
@@ -61,19 +67,16 @@ public class AccountReport{
 			String state = tokens[5];
 			String zip = tokens[6];
 			String country = tokens[7];
-			
-			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country);
+			List<String> emails = new ArrayList<String>();
+			for(int j = 8; j<tokens.length; j++) {
+				String email = tokens[j];
+				emails.add(email);
+			}
+			Address a = new Address(address, city, state, zip, country);
+			Person p = new Person(personCode,lastName,firstName,a, emails);
 			persons.put(personCode, p);
 			
-//			if(line.isBlank() != true) {
-//				String email = tokens[8];
-//				personsList.persons.addEmail(email);
-//				AllPersons.add(email);
-//			}
-//			else {
-//				}
-//			
-//		}
+
 		}
 	}
 	
@@ -109,8 +112,7 @@ public class AccountReport{
 				Property p = new Property(code, label, appraisedValue);
 				assets.put(code, p);
 				
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
+
 
 			}
 			else if(tokens[1].equals("S")) {
@@ -120,8 +122,7 @@ public class AccountReport{
 				double sharePrice = Double.parseDouble(tokens[4]);
 				Stock p = new Stock(code, label, symbol, sharePrice);
 				assets.put(code, p);
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
+
 
 			}
 			else if(tokens[1].equals("C")) {
@@ -131,8 +132,7 @@ public class AccountReport{
 				double exchangeFeeRate = Double.parseDouble(tokens[4]);
 				Crypto p = new Crypto(code, label, exchangeRate, exchangeFeeRate);
 				assets.put(code, p);
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
+
 			}
 			
 			
@@ -163,55 +163,83 @@ public class AccountReport{
 			String owner = tokens[2];
 			String manager = tokens[3];
 			String beneficiaryCode = tokens[4];
+			Person person = persons.get(owner);
+			Account account = new Account(person, acctNumber, accountType, owner, manager, beneficiaryCode);
 			
 			for(int j = 5; j<tokens.length; j++) {
 				String iD = tokens[j];
 				if(assets.containsKey(iD)) {
 					if(assets.get(iD) instanceof Stock) {
-						System.out.println("Stock");
 						Stock stock = (Stock) assets.get(iD);
 						if(tokens[j + 1].equals("P")) {
 							Option put = new Option(stock, tokens[j + 1], LocalDate.parse(tokens[j + 2]),
 									Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]), LocalDate.parse(tokens[j + 6]));
-							System.out.println(put.getValue());
-							
+							account.addAsset(put);
 						}
 						else if(tokens[j + 1].equals("C")) {
 							Option call = new Option(stock, tokens[j + 1], LocalDate.parse(tokens[j + 2]),
 									Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]), LocalDate.parse(tokens[j + 6]));
-							System.out.println(call.getValue());
+							account.addAsset(call);
 						}
 						else if(tokens[j + 1].equals("S")) {
 							Stock stockUpd = new Stock(stock, LocalDate.parse(tokens[j + 2]), Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]) );
-							System.out.println(stockUpd.getValue());
+							account.addAsset(stockUpd);
+							
 						}
 					}
 					
 						
 					
 					else if(assets.get(iD) instanceof Crypto){
-						System.out.println("Crypto!");
 						Crypto c = (Crypto) assets.get(iD);
 						Crypto crypto = new Crypto(c, Double.parseDouble(tokens[j + 2]), Double.parseDouble(tokens[j + 3]), LocalDate.parse(tokens[j + 1]) );
-						
-						System.out.println(crypto.getCurrentValue());
+						account.addAsset(crypto);
 					}
 					else if(assets.get(iD) instanceof Property){
 						Property p = (Property) assets.get(iD);
 						Property prop = new Property(p, LocalDate.parse(tokens[j + 1]), Double.parseDouble(tokens[j + 2]));
-						System.out.println("Property!");
-						System.out.println(prop.getValue());
+						account.addAsset(prop);
 					}
 					else {
 					;
 				}
 				}
 				
-				
 			}
-			
+			accounts.add(account);
 			
 	}
+
+	}
+	
+	private void summaryReports() {
+		System.out.printf("Summary Report of each Client's total investment");
+		System.out.println("\n");
+		for(int i = 0; i<accounts.size();i++) {
+			Account account = accounts.get(i);
+			System.out.println(account.toString());
+		}
+	}
+	
+	/**
+	 * 
+	 * Individual reports of each account!!!. Will give personal info for each account
+	 * 
+	 */
+	private void individualReports() {
+		System.out.println("============================");
+		System.out.println("Individual Reports, assesing each client's investment and tracking its return");
+		for(int i = 0; i<accounts.size();i++) {
+			Account account = accounts.get(i);
+			System.out.println("\n");
+			System.out.println(account.toIndividualInfo());
+			for(int j = 0; j < account.getAssets().size(); j++) {
+				Asset asset = account.getAssets().get(j);
+				System.out.println("\n");
+				System.out.println(asset.toString());
+				System.out.println("\n");
+			}
+		}
 	}
 
 	public static void main(String[] args) {

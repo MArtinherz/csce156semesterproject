@@ -35,13 +35,15 @@ public class Crypto extends Asset implements Value{
 
 
 	public double getExchangeFeeRate() {
-		return exchangeFeeRate;
+		return (exchangeFeeRate/100);
 	}
 	public double getTotalCoins() {
 		return totalCoins;
 	}
 
-
+	public double getExchangeOldRate() {
+		return exchangeOldRate;
+	}
 
 	
 	
@@ -49,12 +51,28 @@ public class Crypto extends Asset implements Value{
 		return "Crypto";
 	}
 	
-	public double newValue() {
-		return this.getCurrentValue() * this.totalCoins * (1 - this.getExchangeFeeRate());
+	/**
+	 * 
+	 * Total gain of the product, which is price where bought crypto at minus current price
+	 * 
+	 */
+	
+	public double getCurrentPrice() {
+		return (this.getCurrentValue() * this.getTotalCoins() * (1 - this.getExchangeFeeRate()));
 	}
 	
-	public double oldValue() {
-		return this.exchangeOldRate * this.totalCoins;
+	public double getGain() {
+		return this.getCurrentPrice() - this.getOrigPrice();
+	}
+	
+	/**
+	 * 
+	 * 
+	 *  price of the asset when bought
+	 */
+	
+	public double getOrigPrice() {
+		return (this.getExchangeOldRate() * this.getTotalCoins());
 	}
 
 
@@ -63,7 +81,17 @@ public class Crypto extends Asset implements Value{
 	}
 
 	public double getValue() {
-		return (this.newValue() - this.oldValue())/this.oldValue();
+		return ((this.getGain())/this.getOrigPrice()) * 100;
+	}
+
+	public String toString() {
+		 return String.format("Old value of %s, purchased on %s: %f total coins at %f rate for $%f   \nCurrent value of %s: %f total coins at %f rate for $%f \n"
+				+ "Total Value of Investment: %f percent", this.getLabel(),this.purchaseDate.toString(), this.getTotalCoins(),this.getExchangeOldRate(), this.getOrigPrice(),
+				this.getLabel(), this.getTotalCoins(), this.getCurrentValue(), this.getCurrentPrice(), this.getValue());
+	}
+
+	public double getExchangeRate() {
+		return exchangeRate;
 	}
 	
 	

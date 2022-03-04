@@ -2,17 +2,18 @@ package com.iffi;
 
 import java.time.LocalDate;
 
-public class Option extends Stock implements Value{
+public class Option extends Asset implements Value{
 
 	private LocalDate purchaseDate;
 	private LocalDate strikeDate;
+	private Stock stock;
 	protected double strikePricePerShare;	
 	protected int shareLimit;
 	protected double premiumPerShare;
 	private String optionType;
 	
 	public Option(Stock stock, String optionType, LocalDate purchaseDate, double strikePricePerShare, int shareLimit, double premiumPerShare, LocalDate strikeDate) {
-		super(stock.getAssetCode(), stock.getLabel(), stock.getSymbol(), stock.getCurrentValue());
+		super(stock.getAssetCode(), stock.getLabel(), stock.getCurrentValue());
 		this.purchaseDate = purchaseDate;
 		this.strikeDate = strikeDate;
 		this.strikePricePerShare = strikePricePerShare;
@@ -41,47 +42,87 @@ public class Option extends Stock implements Value{
 		return premiumPerShare;
 	}
 	
-	public String getOptionType() {
-		return optionType;
+	/**
+	 * 
+	 * 
+	 * This gets the original price of the option, no matter if it's a call or a put
+	 * 
+	 * 
+	 * 
+	 */
+	
+	public double getOrigPrice() {
+		
+		return this.getPremiumPerShare() * this.getShareLimit();
+		
 	}
 	
-	public double getOptionAmount() {
-		return this.getPremiumPerShare() * this.getShareLimit();
-	}
+	/**
+	 * 
+	 * 
+	 * This calculates the total gain/loss of the option
+	 * 
+	 * 
+	 */
+	
+	public double getGain() {
 		
-	public double getValue() {
-		if (this.getOptionType().equals("C")) {
-			if (this.getCurrentValue() < this.getStrikePricePerShare()) {
-				return -100.00;
+		if (this.getType().equals("Call")) {
+			if (this.getCurrentValue() < this.getStrikePricePerShare()) {				
+				return -(this.getOrigPrice());
 			}
-			else if (this.getCurrentValue() > this.getStrikePricePerShare()) {
+			else if (this.getCurrentValue() >= this.getStrikePricePerShare()) {
 				double value = (this.getCurrentValue() - this.getStrikePricePerShare()) * this.getShareLimit();
-				double gain = value - (this.getPremiumPerShare() * this.getShareLimit());
-				return (gain/value);
+				double gain = value - this.getOrigPrice();
+				return gain;
 			}
 		}
 		
-		else if (this.getOptionType().equals("P")) {
+		else if (this.getType().equals("Put")) {
 			if (this.getCurrentValue() < this.getStrikePricePerShare()) {
-				return 100.00;
+				double value = 0.0;
+				double gain = value;
+				return gain;
 			}
 			else if (this.getCurrentValue() > this.getStrikePricePerShare()) {
-				double value = ((this.getStrikePricePerShare() - this.getCurrentValue()) * this.getShareLimit()) + this.getOptionAmount();
+				double value = ((this.getStrikePricePerShare() - this.getCurrentValue()) * this.getShareLimit());
 				if(value > 0) {
-					return 100.00;
+					return this.getOrigPrice();
 				}
 				else if(value == 0) {
 					return 0.0;
 				}
 				else {
-					return -100.00;
+					return -(this.getOrigPrice());
 				}
 			}
 			
 		}
 		return 0.0;
+	}
+		
+	public double getValue() {
+		
+		return this.getGain()/this.getOrigPrice() * 100;
+			
 
 				
+	}
+
+	public String getType() {
+		if (this.optionType.equals("P")){
+			return "Put";
+		}
+		return "Call";
+	}
+	
+	public String toString() {
+		return String.format("Old value of %s %s option, purchased on %s: $%f for %f stocks at strike price: %f \n"
+				+ "Current Share Price: %f \n"
+				+ "Date to Expiration: %s\n"
+				+ "Total Value of Investment: %f percent", this.getLabel(), this.getType(), this.getPurchaseDate().toString(),
+				this.getPremiumPerShare(), this.getShareLimit(), this.getStrikePricePerShare(), this.getCurrentValue(),
+				this.getStrikeDate(), this.getValue());
 	}
 
 	

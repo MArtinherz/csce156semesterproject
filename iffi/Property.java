@@ -28,13 +28,9 @@ public class Property extends Asset implements Value{
 		this.purchasePrise = purchasePrise;
 	}
 
-	public double getAppraisalValue() {
-		return this.getCurrentValue();
-	}
+
 	
-	public double getPurchasePrise() {
-		return this.purchasePrise;
-	}
+
 
 	public String getType() {
 		return "Property";
@@ -45,12 +41,22 @@ public class Property extends Asset implements Value{
 		return purchaseDate;
 	}
 	
-	public double getTotalValue() {
-		return (this.getCurrentValue() - this.getPurchasePrise());
+	public double getGain() {
+		return (this.getCurrentValue() - this.getOrigPrice());
 	}
 
 	public double getValue() {
-		return (this.getTotalValue()/this.getPurchasePrise()) * 100;
+		return (this.getGain()/this.getOrigPrice()) * 100;
+	}
+
+	public double getOrigPrice() {
+		return purchasePrise;
+	}
+	
+	public String toString() {
+		return String.format("Old value of %s, purchased on %s: $%f   \nCurrent value of %s: $%f   \n"
+				+ "Total Value of Investment: %f percent", this.getLabel(), this.getPurchaseDate().toString(), this.getOrigPrice(),  this.getLabel(),
+				this.getCurrentValue(), this.getValue());
 	}
 
 }

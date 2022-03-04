@@ -72,9 +72,9 @@ public class DataConverter {
 			String zip = tokens[6];
 			String country = tokens[7];
 			
-			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country);
-			personsList.addPerson(p);
-			AllPersons.add(p);
+//			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country);
+//			personsList.addPerson(p);
+//			AllPersons.add(p);
 			
 //			if(line.isBlank() != true) {
 //				String email = tokens[8];
@@ -136,12 +136,6 @@ public class DataConverter {
 				String label = tokens[2];
 				double appraisedValue = Double.parseDouble(tokens[3]);
 				Property p = new Property(code, label, appraisedValue);
-				Property b = new Property(p, LocalDate.ofYearDay(2021, 20), 20000.35);
-				//System.out.println(b.getAppraisalValue());
-				//System.out.println(b.getAssetCode());
-				//System.out.println(b.getValue());
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
 
 			}
 			else if(tokens[1].equals("S")) {
@@ -150,11 +144,8 @@ public class DataConverter {
 				String symbol = tokens[3];
 				double sharePrice = Double.parseDouble(tokens[4]);
 				Stock p = new Stock(code, label, symbol, sharePrice);
-				Stock t = new Stock(p, 45, 250, 10);
 				System.out.println(code);
-				System.out.println(t.getValue());
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
+
 
 			}
 			else if(tokens[1].equals("C")) {
@@ -162,9 +153,7 @@ public class DataConverter {
 				String label = tokens[2];
 				double exchangeRate = Double.parseDouble(tokens[3]);
 				double exchangeFeeRate = Double.parseDouble(tokens[4]);
-				//Crypto p = new Crypto(code, label, exchangeRate, exchangeFeeRate);
-				//Assets.addAsset(p);
-				//AllAssets.add(p);
+
 			}
 			
 			

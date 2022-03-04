@@ -43,26 +43,46 @@ public class Stock extends Asset implements Value{
 		return sharePrice;
 	}
 
-	@Override
 	public String getType() {
 		return "Stock";
 	}
 	
-	public double getcurrentStockValue() {
-		return (this.getCurrentValue() * this.shareTotal) + this.dividend;
-	}
 	
-	public double getOrStockValue() {
-		return (this.originalPrice * this.shareTotal);
+
+	
+
+	
+	public double getGain() {
+		return ((this.getCurrentValue() * this.shareTotal) + this.dividend) - this.getOrigPrice();
+	}
+
+	public double getOriginalPrice() {
+		return originalPrice;
+	}
+
+	public double getShareTotal() {
+		return shareTotal;
+	}
+
+	public double getDividend() {
+		return dividend;
 	}
 
 	public double getValue() {
-		return ((this.getcurrentStockValue() - this.getOrStockValue())/this.getOrStockValue()) * 100;
+		return ((this.getGain())/this.getOrigPrice()) * 100;
 	}
 
 	public LocalDate getPurchaseDate() {
 		return purchaseDate;
 	}
-	
 
+	public double getOrigPrice() {
+		return (this.getOriginalPrice() * this.shareTotal);
+	}
+
+	public String toString() {
+		return String.format("Old value of %s, purchased on %s: $%f for %f stocks \nCurrent gain of stock, including dividend of %s: $%f for %f stocks \n"
+				+ "Total Value of Investment: %f percent", this.getLabel(), this.getPurchaseDate().toString(), this.getOriginalPrice(), this.getShareTotal(), this.getLabel(),
+				this.getGain(), this.getShareTotal(), this.getValue());
+	}
 }

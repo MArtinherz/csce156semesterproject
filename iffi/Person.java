@@ -1,58 +1,51 @@
 package com.iffi;
 
+import java.util.List;
+
 /**
  * This is our person class, which models a person that holds an account within our system
- * 
+ *
  * @author Martin Herz, Michael Endacott
  *
  */
 
 
 public class Person {
-			
+
 	private String personCode;
 	private String lastName;
 	private String firstName;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	private String country;
-		
-	public Person(String personCode,String lastName,String firstName,String address,String city,String state,String zip,String country) {
+	private List<String> email;
+	private Address addy;
+
+
+
+	public Person(String personCode,String lastName,String firstName,Address addy, List<String> email) {
 			this.personCode = personCode;
 			this.lastName = lastName;
 			this.firstName = firstName;
-			this.address = address;
-			this.city = city;
-			this.state = state;
-			this.zip = zip;
-			this.country = country;
+			this.email = email;
 		}
-		
-		public String getPersonCode() {
+
+	public String getPersonCode() {
 			return personCode;
 		}
-		public String getLastName() {
+	public String getLastName() {
 			return lastName;
-		}
-		public String getFirstName() {
+	}
+	public String getFirstName() {
 			return firstName;
+			}
+		
+	public List<String> getEmail(){
+			return email;
 		}
-		public String getAddress() {
-			return address;
-		}
-		public String getCity() {
-			return city;
-		}
-		public String getState() {
-			return state;
-		}
-		public String getZip() {
-			return zip;
-		}
-		public String getCountry() {
-			return country;
-		}
+
+
+	public Address getAddy() {
+			return addy;
+	}
+
+
 	}
 

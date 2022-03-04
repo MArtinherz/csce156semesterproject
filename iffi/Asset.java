@@ -10,7 +10,7 @@ package com.iffi;
  *
  */
 
-abstract class Asset {
+abstract class Asset{
 	
 	private String assetCode;
 	private String label;
@@ -43,6 +43,8 @@ abstract class Asset {
 	public double getCurrentValue() {
 		return currentValue;
 	}
+	
+	public abstract String toString();
 	
 	
 

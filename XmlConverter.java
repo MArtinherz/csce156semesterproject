@@ -1,8 +1,11 @@
 package com.iffi;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -10,6 +13,7 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class XmlConverter {
 	
 		public void xmlAssets(List<Object> AllAssets) {
+			
 			//calls the .xml converter
 			XStream xstream = new XStream(new DomDriver());
 			

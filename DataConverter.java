@@ -1,5 +1,6 @@
 package com.iffi;
 
+
 /**
  * This is our Property class.
  * This stores in the data for any type of Property asset
@@ -38,18 +39,18 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 public class DataConverter{
 
 	private final List<Object> AllPersons = new ArrayList<Object>();
-	private personsList personsList;
+	private PersonsList PersonsList;
 	private final List<Object> AllAssets = new ArrayList<Object>();
 	private Assets Assets;
 	
 	
 	public DataConverter(){
-		this.personsList = new personsList();
+		this.PersonsList = new PersonsList();
 		this.Assets = new Assets();
 		loadPersons();
 		loadAssets();
 		jsonAssets(Assets);
-		jsonPersons(personsList);
+		jsonPersons(PersonsList);
 		xmlAssets(AllAssets);
 		xmlPersons(AllPersons);
 	}
@@ -62,7 +63,7 @@ public class DataConverter{
 		
 	}
 
-	private void jsonPersons(com.iffi.personsList personsList2) {
+	private void jsonPersons(com.iffi.PersonsList personsList2) {
 		
 	}
 
@@ -102,14 +103,15 @@ public class DataConverter{
 			String state = tokens[5];
 			String zip = tokens[6];
 			String country = tokens[7];
+			
 			List<String> emails = new ArrayList<String>();
 			for(int j = 8; j<tokens.length; j++) {
 				String email = tokens[j];
 				emails.add(email);
 			}
-			
-			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country,emails);
-			personsList.addPerson(p);
+			Address a = new Address(address,city,state,zip,country);
+			Person p = new Person(personCode,lastName,firstName,a,emails);
+			PersonsList.addPerson(p);
 			AllPersons.add(p);
 		
 			

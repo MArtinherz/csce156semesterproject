@@ -3,40 +3,42 @@
 
 drop table if exists Properties;
 drop table if exists TotalAssets;
--- Query One, grab main person attributes(first name, lastname and personcode)
+
+-- Query 1, grab main person attributes(first name, lastname and personcode)
 select personCode, lastName, firstName from Person;
 
 
--- Query Two, grab major fields of every person except their email(includes address)
+-- Query Two, grab major fields of every person except their email(includes address of person)
+-- Create a join table with Address
 select * 
 from Person
 join Address on Address.personId = Person.personId;
 
--- Query Three, grab emails of a specific person
+-- Query Three, grab emails of a specific person. Use person first and last name in this case to find an email
 select email
 from Email
 join Person on Person.personId = Email.personId
 where Person.lastName = "Smith" and Person.firstName = "Katie";
 
--- Query Four, change emails of a specific person
+-- Query Four, change emails of a specific person. Update email since this person originally had none.
+-- This changes an already existing column and doesn't add a new email column
 update Email
 set email = "katietebow@tebowrulesall.com"
 where Email.personId = 4;
 
 -- Query Five, A query or series of queries to remove a specific person record(must delete all assosciations with persons)
-select accountId
-from `Account`
-where ownerId = 3;
+(select accountId from `Account` where ownerId = 3);
 
-delete from `Option` where accountId = 3;
-delete from Asset where accountId = 3;
+
+delete from `Option` where accountId in (3,4); 
+delete from Asset where accountId in (3,4);
 delete from Email where personId = 3;
 delete from Address where personId = 3;
 delete from `Account` where ownerId = 3;
 delete from Person where personId = 3;
 
 
--- Query Six, Get all assets of an account
+-- Query Six, Get all assets of an account. Use union operator to combine Option and Asset table for a specific account
 select assetId, assetType from Asset where Asset.accountId = 1
 Union
 select optionId, assetType from `Option` as o where o.accountId = 1;
@@ -60,17 +62,17 @@ select accountId, assetId, assetType from Asset
 Union
 select accountId, optionId, assetType from `Option` as o;
 
-select count(ta.assetId) as NumberOfAssets, ta.accountId
+select ta.accountId, count(ta.assetId) as NumberOfAssets
 from TotalAssets as ta
 group by ta.accountId;
 
 -- Query 10 . A query to find the total value of all stock assets on a particular account (hint: you can take an aggregate of a mathematical expression).
-select (Asset.TotalShares * Asset.currentPriceForOne) + Asset.Dividend as `Value`, Asset.accountId
+select (Asset.TotalShares * Asset.currentPriceForOne) + Asset.Dividend as `Value`, Asset.symbol
 from Asset
 where Asset.assetType = "S" and Asset.accountId = 1;
 
 -- Query 11 A query to find the total value of all stock assets on all accounts.
-select sum((Asset.TotalShares * Asset.currentPriceForOne) + Asset.Dividend) as `Value`, Asset.accountId
+select Asset.accountId, sum((Asset.TotalShares * Asset.currentPriceForOne) + Asset.Dividend) as `Value`
 from Asset
 where Asset.assetType = "S"
 group by Asset.accountId;

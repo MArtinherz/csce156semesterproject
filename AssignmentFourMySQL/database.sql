@@ -1,5 +1,3 @@
-use mherz;
-
 
 drop table if exists Address;
 drop table if exists Email;
@@ -32,7 +30,7 @@ create table Address (
 
 );
 
--- Create an Email table, connected to a person. One person can have multiple emails and also no emails
+-- Create an Email table, connected to a person. One person can have multiple emails and also can have no no emails
 create table Email(
 	emailId int not null primary key auto_increment,
 	personId int not null,
@@ -53,7 +51,6 @@ create table `Account` (
     foreign key(benecodeId) references Person(personId)
 );
 
-desc `Account`;
 -- Create an asset table with three distinct discrimators(stock, property and crypto) of an asset.alter
 -- Longer since it includes original Asset information. Important note, person can have multiple purchases 
 -- of the same asset but must be checked
@@ -76,8 +73,7 @@ create table Asset (
 
 );
 
--- Create an option table since this was its own class with two subclasses. Option has two types, Put and Call, but unfourtanely can't
--- use foreign key from Asset table to connect to stockId. StockId must be loaded separately into Option table
+-- Create an option table since this was its own class with two subclasses. Option has two types, Put and Call, along with information about underlying stock
 desc Asset;
 
 create table `Option`(
@@ -93,7 +89,6 @@ create table `Option`(
     accountId int not null,
     foreign key(accountId) references `Account`(accountId)
 );
-desc `Option`;
 -- Create our Test Data here
 
 insert into Person (personCode, lastName, firstName) values ("A01F", "Jordan", "Michael");
@@ -135,7 +130,6 @@ insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePric
 insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "P", "2021-09-12", "2022-05-17", 705.50, 13.65, 263, 860, "TSLA");
 insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "C", "2022-03-10", "2022-03-31", 830, 20.50, 100, 860, "TSLA");
 
-insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (3, "C", "2022-03-31", "2022-03-24", 800, 15.50, 300, 860, "TSLA");
+insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (2, "C", "2022-03-31", "2022-03-24", 800, 15.50, 300, 860, "TSLA");
 
 
--- Then create our test

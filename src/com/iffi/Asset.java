@@ -10,15 +10,23 @@ package com.iffi;
  *
  */
 
-abstract class Asset {
+abstract class Asset{
 	
 	private String assetCode;
 	private String label;
+	private double currentValue;
 	
-	public Asset(String assetCode, String label) {
+	public Asset(String assetCode, String label, double currentValue) {
 		super();
 		this.assetCode = assetCode;
 		this.label = label;
+		this.currentValue = currentValue;
+	}
+	
+	public Asset(Asset asset) {
+		this.assetCode = asset.assetCode;
+		this.label = asset.label;
+		this.currentValue = asset.currentValue;
 	}
 
 
@@ -31,7 +39,14 @@ abstract class Asset {
 	}
 
 	public abstract String getType();
+
+	public double getCurrentValue() {
+		return currentValue;
+	}
+	
+	public abstract String toString();
 	
 	
 
 }
+

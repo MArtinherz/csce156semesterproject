@@ -2,7 +2,9 @@ package com.iffi;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is our List of Asset class. This class stores in a list of assets.
@@ -13,20 +15,19 @@ import java.util.List;
  *
  */
 
-public class Assets {
+public class Assets <Asset>{
 	
-	private List<Object> assets;
-
+	private List clientAssets;
+	
 	public Assets() {
-		this.assets = new ArrayList<Object>();
+		this.clientAssets = new ArrayList();
 	}
 
-	public List<Object> getAssetList() {
-		return Collections.unmodifiableList(this.assets);
-	}
+
 	
-	public void addAsset(Object asset) {
-        this.assets.add(asset);
-    }
+	public void addAsset(Asset t) {
+		this.clientAssets.add(t);
+	}
+
 
 }

@@ -90,4 +90,7 @@ group by P.assetCode;
 -- Query 13 Write a query to detect a potential instances of fraud for option assets: the purchase
 -- date should always be before the strike date. Report any instances where this is not
 -- the case.
+select accountId, Date(o.purchaseDate) as purchaseDate, Date(o.strikeDate) as OptionDate, "Fraud"
+from `Option` as o
+where Date(o.purchaseDate) > Date(o.strikeDate);
 

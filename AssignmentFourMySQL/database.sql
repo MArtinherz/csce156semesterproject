@@ -135,4 +135,7 @@ insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePric
 insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "P", "2021-09-12", "2022-05-17", 705.50, 13.65, 263, 860, "TSLA");
 insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "C", "2022-03-10", "2022-03-31", 830, 20.50, 100, 860, "TSLA");
 
+insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (3, "C", "2022-03-31", "2022-03-24", 800, 15.50, 300, 860, "TSLA");
+
+
 -- Then create our test

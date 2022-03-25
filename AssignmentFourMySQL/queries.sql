@@ -26,17 +26,6 @@ update Email
 set email = "katietebow@tebowrulesall.com"
 where Email.personId = 4;
 
--- Query Five, A query or series of queries to remove a specific person record(must delete all assosciations with persons)
-(select accountId from `Account` where ownerId = 3);
-
-
-delete from `Option` where accountId in (3,4); 
-delete from Asset where accountId in (3,4);
-delete from Email where personId = 3;
-delete from Address where personId = 3;
-delete from `Account` where ownerId = 3;
-delete from Person where personId = 3;
-
 
 -- Query Six, Get all assets of an account. Use union operator to combine Option and Asset table for a specific account
 select assetId, assetType from Asset where Asset.accountId = 1
@@ -96,3 +85,13 @@ select accountId, Date(o.purchaseDate) as purchaseDate, Date(o.strikeDate) as Op
 from `Option` as o
 where Date(o.purchaseDate) > Date(o.strikeDate);
 
+-- Query Five, A query or series of queries to remove a specific person record(must delete all assosciations with persons)
+(select accountId from `Account` where ownerId = 3);
+
+
+delete from `Option` where accountId in (3,4); 
+delete from Asset where accountId in (3,4);
+delete from Email where personId = 3;
+delete from Address where personId = 3;
+delete from `Account` where ownerId = 3;
+delete from Person where personId = 3;

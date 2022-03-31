@@ -66,7 +66,7 @@ public class Account extends Person implements Value{
 		
  
 	public double getOrigPrice() {
-		return value;
+		return (value / 2);
 	}
 	
 	
@@ -93,7 +93,7 @@ public class Account extends Person implements Value{
 				totalValue += prop.getCurrentValue();
 			}
 		}
-		return totalValue;
+		return (totalValue / 2);
 	}
  
 	
@@ -183,8 +183,8 @@ public class Account extends Person implements Value{
 	 * called by totalSummaryReport to print the account info at the top 
 	 */
 	public String accountSummary() {
-		return String.format("%s    %s    %s      %f     %f     %f     %f",this.accountCode,this.getOwner(),this.getManager(),this.FeeCalc(),this.getReturnPercent(),
-				this.getGain(),this.getTotalValue(),this.getReturnPercent());
+		return String.format("%s    %s    %s      %f     %f     %f     %f",this.accountCode,this.getOwner(),this.getManager(),this.FeeCalc(),
+				this.getGain(),this.getReturnPercent(),(this.getTotalValue() *2));
 	}
 	/*
 	 * prints the person info of the account

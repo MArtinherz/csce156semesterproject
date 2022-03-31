@@ -233,7 +233,7 @@ public class AccountReport{
 	 */
 	private void totalSummaryReport() {
 		System.out.println("==================================================================================\n");
-		System.out.println("Account    Owner      Manager              Fees           Return          Ret%           Value\n");
+		System.out.println("Account   Owner     Manager        Fees           Return          Ret%           Value\n");
 		for(int i = 0; i<accounts.size();i++) {
 			Account account = accounts.get(i);
 			System.out.println(account.accountSummary());

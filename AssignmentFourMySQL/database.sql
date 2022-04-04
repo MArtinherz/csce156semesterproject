@@ -1,11 +1,10 @@
-
+use mherz;
 drop table if exists Address;
 drop table if exists Email;
-drop table if exists `Option`;
+drop table if exists PurchasedAsset;
 drop table if exists Asset;
 drop table if exists `Account`;
 drop table if exists Person;
-
 -- Create a Person table since a lot relies on the Person
 create table Person(
 	personId int not null primary key auto_increment,
@@ -14,23 +13,20 @@ create table Person(
     firstName varchar(50) not null
 
 );
-
-
--- Create an Address table, connected back to a Person Instance
+-- Create an Address table, connected back to a Person Instance, one-to-many
 create table Address (
 	addressId int not null primary key auto_increment,
-    personId int not null,
-    Address varchar(50) not null,
+    personId int not null Unique,
+    address varchar(50) not null,
     city varchar(50) not null,
     state varchar(50) not null,
     zip varchar(50) not null,
     country varchar(50) not null,
     foreign key(personId) references Person(personId)
-	
-
 );
 
 -- Create an Email table, connected to a person. One person can have multiple emails and also can have no no emails
+-- One to many
 create table Email(
 	emailId int not null primary key auto_increment,
 	personId int not null,
@@ -41,14 +37,14 @@ create table Email(
 -- Then create an Account table. Includes references to personId back to person along with beneficiary and manager?
 create table `Account` (
 	accountId int not null primary key auto_increment,
-    accountCode varchar(50) not null,
+    accountCode varchar(50) not null Unique,
     ownerId int not null,
     accountType varchar(1) not null,
     managerId int not null,
-    benecodeId int default null,
+    beneId int default null,
 	foreign key(ownerId) references Person(personId),
     foreign key(managerId) references Person(personId),
-    foreign key(benecodeId) references Person(personId)
+    foreign key(beneId) references Person(personId)
 );
 
 -- Create an asset table with three distinct discrimators(stock, property and crypto) of an asset.alter
@@ -57,38 +53,34 @@ create table `Account` (
 
 create table Asset (
 	assetId int not null primary key auto_increment,
-    assetCode varchar(45) not null,
+    assetCode varchar(45) not null Unique,
     label varchar(55)  not null,
     currentPriceForOne double not null,
-    PurchasePriceForOne double not null,
-    purchaseDate varchar(45) not null,
-    assetType varchar(2) not null,
-    accountId int not null,
-    TotalCoins double default null,
+    assetType varchar(1) not null
+);
+
+-- Create a purchasedAsset table, representing one asset purhcased by an account. Many-to-many relationship
+
+create table PurchasedAsset(
+	PurchasedAssetId int not null primary key auto_increment,
+	purchaseDate varchar(45) not null,
+	accountId int not null,
+    assetId int not null,
+	PurchasedPriceForOne double not null,
+	TotalCoins double default null,
     TotalShares double default null,
     exchangeFeeRate double default null,
     Dividend double default null,
-    Symbol varchar(5) default null,
-    foreign key(accountId) references `Account`(accountId)
-
+    Symbol varchar(5) default null,	
+    strikeDate varchar(45) default null,
+    strikePricePerShare double default null,
+    shareLimit int default null,
+    optionType varchar(1) default null,
+	foreign key(accountId) references `Account`(accountId),
+    foreign key(assetId) references Asset(assetId)
 );
 
--- Create an option table since this was its own class with two subclasses. Option has two types, Put and Call, along with information about underlying stock
-desc Asset;
 
-create table `Option`(
-	optionId int not null primary key auto_increment,
-    assetType varchar(1) not null,
-    currentPriceForOne double not null,
-    symbol varchar(5) not null,
-    purchaseDate varchar(45) not null,
-    strikeDate varchar(45) not null,
-    strikePricePerShare double not null,
-    premiumPerShare double not null,
-    shareLimit int not null,
-    accountId int not null,
-    foreign key(accountId) references `Account`(accountId)
-);
 -- Create our Test Data here
 
 insert into Person (personCode, lastName, firstName) values ("A01F", "Jordan", "Michael");
@@ -114,22 +106,29 @@ insert into `Account` (accountCode, ownerId, accountType, managerId) values ("AC
 insert into `Account` (accountCode, ownerId, accountType, managerId) values ("AC016", 4,"N", 4);
 
 
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate, TotalShares, Dividend, Symbol) values (1, "STK40", "Tesla", 860, 200,"S", "2017-10-22", 300, 500, "TSLA");
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate) values (1, "CA22", "Tebow Card", 5, 50000,"Pr", "2010-05-17");
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate) values (1, "CA22", "Tebow Card", 5, 50000,"Pr", "2010-05-17");
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate) values (1, "CA23", "Deez Card", 5000, 500,"Pr", "2020-05-17");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("S1", "Tesla", 860, "S");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("S2", "Nike", 140.18, "S");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("S3", "Wal-Mart", 135.33, "S");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("S4", "T-Mobile", 124.48, "S");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("C1", "Bitcoin", 42232.16, "C");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("C2", "Dogecoin", .1447, "C");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("C3", "Etherum", 2931.06, "C");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("C4", "Litecoin", 124.37, "C");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("P1", "Tim Tebow Card", 5, "P");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("P2", "John Elway Rookie Card", 600, "P");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("P3", "Tom Brady Rookie Card", 4000, "P");
+insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("P4", "Michael Jordan Rookie Card", 50000, "P");
 
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate, TotalCoins, exchangeFeeRate ) values (2,"CRPT00", "Etherium", 3060.52, 4000.50, "C", "2021-11-21", 1.3, .01);
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate, TotalCoins, exchangeFeeRate) values (3,"CRPT01", "Dogecoin", .15, .70, "C", "2021-04-17", 5000, .02);
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate, TotalShares, Dividend, Symbol) values (3,"STK41", "Nike", 145, 60,"S", "2018-10-22", 40, 214.34, "NIKE");
-insert into Asset (accountId, assetCode, label, currentPriceForOne, PurchasePriceForOne, assetType, purchaseDate, TotalShares, Dividend, Symbol) values (1, "STK42", "Wal-Mart", 250, 120,"S", "2017-10-22", 500, 290, "WAL");
+-- Stock
+insert into PurchasedAsset(accountId, assetId, purchaseDate,PurchasedPriceForOne, TotalShares, Dividend, Symbol) values (1,1,"2015-12-31",45,1000,1500.55,"TSLA");
+insert into PurchasedAsset(accountId, assetId, purchaseDate,PurchasedPriceForOne, TotalShares, Dividend, Symbol) values (3,4,"2021-03-18",95,10,0,"TM");
+-- Crypto
+insert into PurchasedAsset(accountId, assetId,purchaseDate, PurchasedPriceForOne, TotalCoins, exchangeFeeRate) values (2,6,"2021-03-17",.6532,1000,2);
+insert into PurchasedAsset(accountId, assetId,purchaseDate, PurchasedPriceForOne, TotalCoins, exchangeFeeRate) values (3,7,"2021-06-21", 4200.45, .11, 1.2);
+-- Property
+insert into PurchasedAsset(accountId, assetId, purchaseDate,PurchasedPriceForOne) values (1,9,"2010-10-05", 50000);
 
-
-
-insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (2, "C", "2021-11-10", "2022-11-10", 125.50, 3.50, 125, 145, "NIKE");
-insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "P", "2021-09-12", "2022-05-17", 705.50, 13.65, 263, 860, "TSLA");
-insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (4, "C", "2022-03-10", "2022-03-31", 830, 20.50, 100, 860, "TSLA");
-
-insert into `Option` (accountId, assetType, purchaseDate, strikeDate, strikePricePerShare, premiumPerShare, shareLimit, currentPriceForOne, Symbol) values (2, "C", "2022-03-31", "2022-03-24", 800, 15.50, 300, 860, "TSLA");
-
-
+-- Option
+insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (2,"2021-03-18",2,1.50,"2021-05-01",120,100,"P");
+insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (4,"2020-03-08",1,15.35,"2022-05-17",700,200,"P");
+insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (4,"2020-03-08",1,30.55,"2022-04-29",1000,200,"C");

@@ -198,6 +198,8 @@ public class AccountReport{
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				//TODO: Add account variables here to load in, grab person information of owner, manager and beneficiary
+				
+				
 				int ownerId = rs.getInt("ownerId");
 				int accountId = rs.getInt("accountId");
 				int managerId = rs.getInt("managerId");

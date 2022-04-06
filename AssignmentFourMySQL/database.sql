@@ -1,10 +1,14 @@
 use mherz;
+
+SET FOREIGN_KEY_CHECKS=0;
 drop table if exists Address;
 drop table if exists Email;
 drop table if exists PurchasedAsset;
 drop table if exists Asset;
 drop table if exists `Account`;
 drop table if exists Person;
+SET FOREIGN_KEY_CHECKS=1;
+
 -- Create a Person table since a lot relies on the Person
 create table Person(
 	personId int not null primary key auto_increment,
@@ -88,10 +92,10 @@ insert into Person (personCode, lastName, firstName) values ("B02G", "Smith", "K
 insert into Person (personCode, lastName, firstName) values ("C03H","James","LeBron");
 insert into Person (personCode, lastName, firstName) values ("D04J","Tebow","Katie");
 
-insert into Address (personId, Address, city, state, zip, country) values ( (select personId from Person where personCode = "A01F"),"1717 Goat Drive","Chicago","IL","60608","USA");
-insert into Address (personId, Address, city, state, zip, country) values ( (select personId from Person where personCode = "B02G"),"7935 Yankee Hill Road","Omaha","NE","68516","USA");
-insert into Address (personId, Address, city, state, zip, country) values ( (select personId from Person where personCode = "C03H"),"666 Flop Circle","Cleveland","OH","67561","USA");
-insert into Address (personId, Address, city, state, zip, country) values ( (select personId from Person where personCode = "D04J"),"4365 Mile Ct","Denver","CO","68791","USA");
+insert into Address (personId, address, city, state, zip, country) values ( (select personId from Person where personCode = "A01F"),"1717 Goat Drive","Chicago","IL","60608","USA");
+insert into Address (personId, address, city, state, zip, country) values ( (select personId from Person where personCode = "B02G"),"7935 Yankee Hill Road","Omaha","NE","68516","USA");
+insert into Address (personId, address, city, state, zip, country) values ( (select personId from Person where personCode = "C03H"),"666 Flop Circle","Cleveland","OH","67561","USA");
+insert into Address (personId, address, city, state, zip, country) values ( (select personId from Person where personCode = "D04J"),"4365 Mile Ct","Denver","CO","68791","USA");
 
 insert into Email (personId, email) values ( (select personId from Person where personCode = "A01F"), "MJ@gmail.com");
 insert into Email (personId, email) values ( (select personId from Person where personCode = "B02G"), "sarahsmith@gmail.com");
@@ -99,11 +103,10 @@ insert into Email (personId, email) values ( (select personId from Person where 
 insert into Email (personId, email) values ( (select personId from Person where personCode = "C03H"), "LeJames@huskers.unl.edu");
 insert into Email (personId) values ( (select personId from Person where personCode = "D04J"));
 
-insert into `Account` (accountCode, ownerId, accountType, managerId, benecodeId) values ("AC012", 1,"P", 1, 1);
-insert into `Account` (accountCode, ownerId, accountType, managerId, benecodeId) values ("AC013", 2,"N", 2, 2);
-insert into `Account` (accountCode, ownerId, accountType, managerId, benecodeId) values ("AC014", 3,"P", 1, 3);
-insert into `Account` (accountCode, ownerId, accountType, managerId) values ("AC015", 3,"N", 3);
-insert into `Account` (accountCode, ownerId, accountType, managerId) values ("AC016", 4,"N", 4);
+insert into `Account` (accountCode, ownerId, accountType, managerId, beneId) values ("AC012", 1,"P", 1, 1);
+insert into `Account` (accountCode, ownerId, accountType, managerId, beneId) values ("AC013", 2,"N", 2, 2);
+insert into `Account` (accountCode, ownerId, accountType, managerId, beneId) values ("AC014", 3,"P", 1, 3);
+insert into `Account` (accountCode, ownerId, accountType, managerId) values ("AC015", 4,"N", 3);
 
 
 insert into Asset (assetCode, label, currentPriceForOne, assetType) values ("S1", "Tesla", 860, "S");
@@ -129,6 +132,6 @@ insert into PurchasedAsset(accountId, assetId,purchaseDate, PurchasedPriceForOne
 insert into PurchasedAsset(accountId, assetId, purchaseDate,PurchasedPriceForOne) values (1,9,"2010-10-05", 50000);
 
 -- Option
-insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (2,"2021-03-18",2,1.50,"2021-05-01",120,100,"P");
+insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (2,"2021-03-18",2,1.50,"2021-05-01",120,100,"C");
 insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (4,"2020-03-08",1,15.35,"2022-05-17",700,200,"P");
 insert into PurchasedAsset(accountId,purchaseDate, assetId,PurchasedPriceForOne, strikeDate, strikePricePerShare, shareLimit, optionType) values (4,"2020-03-08",1,30.55,"2022-04-29",1000,200,"C");

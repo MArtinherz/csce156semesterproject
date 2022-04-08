@@ -1,109 +1,184 @@
-Summary Report of each Client's total investment
+AC012 Jordan, Michael Jordan, Michael $ 75.00, $ 766505.55, 806.85 percent, $ 861505.55
+AC013 Smith, Katie Smith, Katie $ 10.00, $ 1359.50, 169.26 percent, $ 2162.70
+AC014 James, LeBron Jordan, Michael $ 7.50, $ 155.17, 10.99 percent, $ 1567.22
+AC015 Tebow, Katie James, LeBron $ 0.00, $ -35040.00, -573.49 percent, $ -28930.00
+			 Fees: 92.50 Total Gain: 836305.47 	 Total Value: 732980.22
 
-Account Number: AC012
-Name: Michael Jordan
-Fees: $75.000000
-Return Percent: 806.847947 percent
-Total Value: $ 95000.000000
-Total Gain: $766505.550000
+==============================
+|| Pro Account AC012 ||
+==============================
++----------------+
+|   Owner       |
++----------------+
+Jordan , Michael
+[MJ@gmail.com]
+1717 Goat Drive Chicago USA IL 60608
++----------------+
+|   Manager       |
++----------------+
+Jordan , Michael
+[MJ@gmail.com]
+1717 Goat Drive Chicago USA IL 60608
++----------------+
+|   Beneficiary       |
++----------------+
+Jordan , Michael
+[MJ@gmail.com]
+1717 Goat Drive Chicago USA IL 60608
++----------------+
+|   Assets       |
++----------------+
 
-Account Number: AC013
-Name: Sarah Smith
-Fees: $10.000000
-Return Percent: 169.260458 percent
-Total Value: $ 803.200000
-Total Gain: $1359.500000
+S1   Tesla   TSLA(Stock)
+Cost Basis:  1000.00 shares @ 45.00 on 2015-12-31
+Value Basis (including dividend @ 1500.55) : 1000.00 shares @ 860.00 on TBD
+        1814.45      $      816500.55
 
-Account Number: AC014
-Name: Lebron James
-Fees: $10.000000
-Return Percent: 10.988786 percent
-Total Value: $ 1412.049500
-Total Gain: $155.167100
+Tim Tebow Card (Property)
+Cost Basis: purchased @ 50000.00 on 2010-10-05
+Value Basis: appraised @ 5.00 on TBD
+Gain: $-49995.00
+Return Percent: -99.99 
 
-Account Number: AC015
-Name: Katie Tebow
-Fees: $0.000000
-Return Percent: -100.000000 percent
-Total Value: $ 9180.000000
-Total Gain: $-9180.000000
++----------------+
+|   Totals       |
++----------------+
+Total Value:        $861505.55 TBD
+Cost Basis:         $ 95000.00
+Total Account Fees: $ 75.00
+Total Return:       $ 766505.55
+Total Return Percent: 806.84
 
-============================
-Individual Reports, assesing each client's investment and tracking its return
+==============================
+|| Noob Account AC013 ||
+==============================
++----------------+
+|   Owner       |
++----------------+
+Smith , Katie
+[sarahsmith@gmail.com, sarahsmith@yahoo.com]
+7935 Yankee Hill Road Omaha USA NE 68516
++----------------+
+|   Manager       |
++----------------+
+Smith , Katie
+[sarahsmith@gmail.com, sarahsmith@yahoo.com]
+7935 Yankee Hill Road Omaha USA NE 68516
++----------------+
+|   Beneficiary       |
++----------------+
+Smith , Katie
+[sarahsmith@gmail.com, sarahsmith@yahoo.com]
+7935 Yankee Hill Road Omaha USA NE 68516
++----------------+
+|   Assets       |
++----------------+
 
+C2  Dogecoin  Crypto
+Cost Basis:  1000.00 Coins @ $0.653200 on 2021-03-17
+Value Basis: 1000.000000 Coins @ $0.144700 less TBD       -77.85   $    144.70
 
-Account Number: AC012
-Name: Michael  Jordan
-Emails/Contact Info: [MJ@gmail.com]
+S2 Nike
+Buy upto 100.0 @120.00 until 2021-05-01
+Premium of 1.50 per share (150.00)
+Short Call Value: 100.0 shares
+@ 140.18 - 120.0 - 1.50 = 2018.00
+1245.33%  Total Gain: $ 1868.00
 
++----------------+
+|   Totals       |
++----------------+
+Total Value:        $2162.70 
+Cost Basis:         $ 803.20
+Total Account Fees: $ 10.00
+Total Return:       $ 1359.50
+Total Return Percent: 169.26
 
-Old value of Tesla, purchased on 2015-03-12: $45.000000 for 1000.000000 stocks 
-Current gain of stock, including dividend of Tesla: $816500.550000 for 1000.000000 stocks 
-Total Value of Investment: 1814.445667 percent
+==============================
+|| Pro Account AC014 ||
+==============================
++----------------+
+|   Owner       |
++----------------+
+James , LeBron
+[LeJames@huskers.unl.edu]
+666 Flop Circle Cleveland USA OH 67561
++----------------+
+|   Manager       |
++----------------+
+Jordan , Michael
+[MJ@gmail.com]
+1717 Goat Drive Chicago USA IL 60608
++----------------+
+|   Beneficiary       |
++----------------+
+James , LeBron
+[LeJames@huskers.unl.edu]
+666 Flop Circle Cleveland USA OH 67561
++----------------+
+|   Assets       |
++----------------+
 
+S4   T-Mobile   TM(Stock)
+Cost Basis:  10.00 shares @ 95.00 on 2021-03-18
+Value Basis (including dividend @ 0.00) : 10.00 shares @ 124.48 on TBD
+        31.03      $      294.80
 
+C3  Etherum  Crypto
+Cost Basis:  0.11 Coins @ $4200.450000 on 2021-06-21
+Value Basis: 0.110000 Coins @ $2931.060000 less TBD       -30.22   $    322.42
 
++----------------+
+|   Totals       |
++----------------+
+Total Value:        $1567.21 TBD
+Cost Basis:         $ 1412.04
+Total Account Fees: $ 7.50
+Total Return:       $ 155.16
+Total Return Percent: 10.98
 
-Old value of Tim Tebow Rookie Card, purchased on 2010-12-12: $50000.000000   
-Current value of Tim Tebow Rookie Card: $5.000000   
-Total Value of Investment: -99.990000 percent
+==============================
+|| Noob Account AC015 ||
+==============================
++----------------+
+|   Owner       |
++----------------+
+Tebow , Katie
+[null]
+4365 Mile Ct Denver USA CO 68791
++----------------+
+|   Manager       |
++----------------+
+James , LeBron
+[LeJames@huskers.unl.edu]
+666 Flop Circle Cleveland USA OH 67561
++----------------+
+|   Beneficiary    |
++----------------+
+No Beneficiary!
++----------------+
+|   Assets       |
++----------------+
 
+S1 Tesla
+Buy upto 200.0 @700.0 until 2022-05-17
+Premium of 15.35 per share (0.0)
+Short Put Value: 200.0 shares
+@ 860.0 - 700.0 - 15.35 = -28930.0
+-100.0%  Total Gain: $ -28930.0
 
+S1 Tesla
+Buy upto 200.0 @1000.0 until 2022-04-29
+Premium of 30.55 per share (6110.0)
+Short Call Value: 200.0 shares
+@ 860.0 - 1000.0 - 30.55 = 0.0
+-100.0%  Total Gain: $ -6110.0
 
-
-Account Number: AC013
-Name: Sarah  Smith
-Emails/Contact Info: [sarahsmith@yahoo.com, sarahsmith@gmail.com]
-
-
-Old value of Dogecoin, purchased on 2021-03-17: 1000.000000 total coins at 0.653200 rate for $653.200000   
-Current value of Dogecoin: 1000.000000 total coins at 0.144700 rate for $144.700000 
-Total Value of Investment: -77.847520 percent
-
-
-
-
-Old value of Nike Call option, purchased on 2021-03-18: $1.500000 for 100.000000 stocks at strike price: 120.000000 
-Current Share Price: 140.180000 
-Date to Expiration: 2021-05-01
-Total Value of Investment: 1245.333333 percent
-
-
-
-
-Account Number: AC014
-Name: Lebron  James
-Emails/Contact Info: [LeJames@huskers.unl.edu]
-
-
-Old value of Ethereum , purchased on 2021-06-21: 0.110000 total coins at 4200.450000 rate for $462.049500   
-Current value of Ethereum : 0.110000 total coins at 2931.060000 rate for $322.416600 
-Total Value of Investment: -30.220334 percent
-
-
-
-
-Old value of T-Mobile, purchased on 2021-03-18: $95.000000 for 10.000000 stocks 
-Current gain of stock, including dividend of T-Mobile: $294.800000 for 10.000000 stocks 
-Total Value of Investment: 31.031579 percent
-
-
-
-
-Account Number: AC015
-Name: Katie  Tebow
-Emails/Contact Info: []
-
-
-Old value of Tesla Put option, purchased on 2020-03-08: $15.350000 for 200.000000 stocks at strike price: 700.000000 
-Current Share Price: 860.000000 
-Date to Expiration: 2022-05-17
-Total Value of Investment: -100.000000 percent
-
-
-
-
-Old value of Tesla Call option, purchased on 2020-03-08: $30.550000 for 200.000000 stocks at strike price: 1000.000000 
-Current Share Price: 860.000000 
-Date to Expiration: 2022-03-29
-Total Value of Investment: -100.000000 percent
++----------------+
+|   Totals       |
++----------------+
+Total Value:        $-28930.00 TBD
+Cost Basis:         $ 6110.00
+Total Account Fees: $ 0.00
+Total Return:       $ -35040.00
+Total Return Percent: -573.48

@@ -9,6 +9,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
+import org.apache.logging.log4j.core.config.DefaultConfiguration;
+
 /**
  * 
  * 
@@ -21,16 +26,14 @@ import java.util.List;
 
 public class DatabaseLoader {
 	
-	private List<Account> accounts = new ArrayList<Account>();
+	protected List<Account> accounts = new ArrayList<Account>();
 
 	
 	
 	public DatabaseLoader(){
 		loadAccounts();
-		SummaryReports();
-		IndividualReports();
-	}
-	
+		getAccounts();
+	}	
 	/**
 	 * 
 	 * @param personId
@@ -193,6 +196,9 @@ public class DatabaseLoader {
 			
 		}
 		
+	public List<Account> getAccounts(){
+		return accounts;
+	}
 
 
 	
@@ -309,42 +315,8 @@ public class DatabaseLoader {
 	}
 	
 	
-	/**
-	 * 
-	 * @return Summary Reports of account along with totals in fees, value and gain of all accounts
-	 */
 	
-	private void SummaryReports() {
-		double totalFees = 0.0;
-		double totalValue = 0.0;
-		double totalGain = 0.0;
-		for(Account account : accounts) {
-			totalFees += account.FeeCalc();
-			totalValue += account.getValue();
-			totalGain += account.getGain();
-			System.out.println(account.toString());
-		}
-		System.out.printf("\t\t\t Fees: %.2f Total Gain: %.2f \t Total Value: %.2f", totalFees, totalValue, totalGain);
-		System.out.println("\n");
-	}
-	
-	/**
-	 * 
-	 * @return returns details info of each account from person to asset and totals
-	 * 
-	 */
-	
-	private void IndividualReports() {
-		for(Account account : accounts) {
-			System.out.println(account.toIndividualInfo());
-			System.out.println(account.AssetInformation());
-			System.out.println(account.totalInfo());
-		}
-	}
 
-	public static void main(String[] args) {
-		DatabaseLoader demo = new DatabaseLoader();
-    }
 
 
 }

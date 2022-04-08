@@ -55,10 +55,12 @@ public class Account{
 	public void addAsset(Asset t) {
 		this.assets.add(t);
 	}
+	
+	
 	/**
 	 * 
 	 * 
-	 * This returns our gain
+	 * This returns our Account Value
 	 */
 
 	public double getValue() {
@@ -72,7 +74,7 @@ public class Account{
 	/**
 	 * 
 	 * 
-	 * This returns our cost
+	 * This returns our Account Cost
 	 */
 	public double getCostBasis() {
 		double cost = 0.0;
@@ -82,9 +84,19 @@ public class Account{
 		return cost;
 	}
 	
+	/**
+	 * 
+	 * @returns our Account gain
+	 */
+	
 	public double getGain() {
 		return this.getValue() - this.getCostBasis();
 	}
+	
+	/**
+	 * 
+	 * @returns our Account Return Percent
+	 */
 	
 	public double getReturnPercent() {
 		return (this.getGain()/this.getCostBasis()) * 100;
@@ -166,8 +178,8 @@ public class Account{
 		return String.format("+----------------+\n"
 								+ "|   Totals       |\n"
 								+ "+----------------+\n"
-				+ "Total Value:        $%f TBD\nCost Basis:         $ %f\nTotal Account Fees: $ %f\n"
-				+ "Total Return:       $ %f\nTotal Return Percent: %f\n",this.getValue(), this.getCostBasis(),
+				+ "Total Value:        $%.2f \nCost Basis:         $ %.2f\nTotal Account Fees: $ %.2f\n"
+				+ "Total Return:       $ %.2f\nTotal Return Percent: %.2f\n",this.getValue(), this.getCostBasis(),
 				this.FeeCalc(),this.getGain(),this.getReturnPercent());
 	}
 	
@@ -189,7 +201,7 @@ public class Account{
 		if(this.getAccountType().equals("P")) {
 			return "Pro";
 		}
-		return "Null";
+		return "Noob";
 	}
 	
 	

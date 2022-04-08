@@ -67,9 +67,10 @@ public class Call extends Option{
 		callbuild.append(this.getType() + " Value: " +  this.getShareLimit() + " shares");
 		callbuild.append("\n");
 
+		
 		callbuild.append("@ " + this.getCurrentValue() + " - " + this.getStrikePricePerShare() + " - " + this.getPremiumPerShare() + " = " + this.getValue() );
 		callbuild.append("\n");
-		callbuild.append(this.getReturnPercent() + "% " + " Total Gain: $ " + this.getGain());
+		callbuild.append(String.format(" %.2f percent  Total Gain: $ %.2f", this.getReturnPercent(), this.getGain()));
 		
 		return callbuild.toString();
 		

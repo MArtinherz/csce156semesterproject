@@ -1,0 +1,53 @@
+Account Summary Report By Owner
+==============================================================================================================
+Account    Owner                Manager                       Fees          Return         Ret%          Value
+AC012      Jordan, Michael      Jordan, Michael        $       75.00    $   
+AC013      Smith, Sarah         Smith, Sarah           $        10.00   $  
+AC014      James, LeBron        James, LeBron 	       $        10.00   $   
+AC015      Tebow, Katie         Tebow, Katie           $        0.00    $    
+                                                     ---------------------------------------------------------
+                                              Totals $      120.00   $                              $  
+
+By Account:
+
+Account #: AC012
+Account Type: Pro
+Owner: Michael Jordan
+Manager: Michael Jordan
+Fees: $75.00
+Returns: $136,835.55
+Return %: 141.79%
+Total Value: 96500.55
+
+By Account:
+
+Account #: AC012
+Account Type: Pro
+Owner: Michael Jordan
+Manager: Michael Jordan
+Fees: $75.00
+Returns: $136,835.55
+Return %: 141.79%
+Total Value: 96500.55
+
+By Account:
+
+Account #: AC012
+Account Type: Pro
+Owner: Michael Jordan
+Manager: Michael Jordan
+Fees: $75.00
+Returns: $136,835.55
+Return %: 141.79%
+Total Value: 96500.55
+
+By Account:
+
+Account #: AC015
+Account Type: Pro
+Owner: Michael Jordan
+Manager: Michael Jordan
+Fees: $75.00
+Returns: $136,835.55
+Return %: 141.79%
+Total Value: 96500.55

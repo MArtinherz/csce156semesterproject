@@ -1,0 +1,109 @@
+Summary Report of each Client's total investment
+
+Account Number: AC012
+Name: Michael Jordan
+Fees: $75.000000
+Return Percent: 806.847947 percent
+Total Value: $ 95000.000000
+Total Gain: $766505.550000
+
+Account Number: AC013
+Name: Sarah Smith
+Fees: $10.000000
+Return Percent: 169.260458 percent
+Total Value: $ 803.200000
+Total Gain: $1359.500000
+
+Account Number: AC014
+Name: Lebron James
+Fees: $10.000000
+Return Percent: 10.988786 percent
+Total Value: $ 1412.049500
+Total Gain: $155.167100
+
+Account Number: AC015
+Name: Katie Tebow
+Fees: $0.000000
+Return Percent: -100.000000 percent
+Total Value: $ 9180.000000
+Total Gain: $-9180.000000
+
+============================
+Individual Reports, assesing each client's investment and tracking its return
+
+
+Account Number: AC012
+Name: Michael  Jordan
+Emails/Contact Info: [MJ@gmail.com]
+
+
+Old value of Tesla, purchased on 2015-03-12: $45.000000 for 1000.000000 stocks 
+Current gain of stock, including dividend of Tesla: $816500.550000 for 1000.000000 stocks 
+Total Value of Investment: 1814.445667 percent
+
+
+
+
+Old value of Tim Tebow Rookie Card, purchased on 2010-12-12: $50000.000000   
+Current value of Tim Tebow Rookie Card: $5.000000   
+Total Value of Investment: -99.990000 percent
+
+
+
+
+Account Number: AC013
+Name: Sarah  Smith
+Emails/Contact Info: [sarahsmith@yahoo.com, sarahsmith@gmail.com]
+
+
+Old value of Dogecoin, purchased on 2021-03-17: 1000.000000 total coins at 0.653200 rate for $653.200000   
+Current value of Dogecoin: 1000.000000 total coins at 0.144700 rate for $144.700000 
+Total Value of Investment: -77.847520 percent
+
+
+
+
+Old value of Nike Call option, purchased on 2021-03-18: $1.500000 for 100.000000 stocks at strike price: 120.000000 
+Current Share Price: 140.180000 
+Date to Expiration: 2021-05-01
+Total Value of Investment: 1245.333333 percent
+
+
+
+
+Account Number: AC014
+Name: Lebron  James
+Emails/Contact Info: [LeJames@huskers.unl.edu]
+
+
+Old value of Ethereum , purchased on 2021-06-21: 0.110000 total coins at 4200.450000 rate for $462.049500   
+Current value of Ethereum : 0.110000 total coins at 2931.060000 rate for $322.416600 
+Total Value of Investment: -30.220334 percent
+
+
+
+
+Old value of T-Mobile, purchased on 2021-03-18: $95.000000 for 10.000000 stocks 
+Current gain of stock, including dividend of T-Mobile: $294.800000 for 10.000000 stocks 
+Total Value of Investment: 31.031579 percent
+
+
+
+
+Account Number: AC015
+Name: Katie  Tebow
+Emails/Contact Info: []
+
+
+Old value of Tesla Put option, purchased on 2020-03-08: $15.350000 for 200.000000 stocks at strike price: 700.000000 
+Current Share Price: 860.000000 
+Date to Expiration: 2022-05-17
+Total Value of Investment: -100.000000 percent
+
+
+
+
+Old value of Tesla Call option, purchased on 2020-03-08: $30.550000 for 200.000000 stocks at strike price: 1000.000000 
+Current Share Price: 860.000000 
+Date to Expiration: 2022-03-29
+Total Value of Investment: -100.000000 percent

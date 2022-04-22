@@ -2,7 +2,16 @@ package com.iffi;
 
 import java.time.LocalDate;
 
-abstract class Option extends Asset{
+/**
+ * 
+ * @author Martin Herz, Michael Endacott
+ *
+ * This is our Option class. It's an extension of Stock and is abstract since we have multiple types and unique features that are common
+ * only in Calls and Puts.
+ *
+ */
+
+abstract class Option extends Stock{
 
 	private LocalDate purchaseDate;
 	private LocalDate strikeDate;
@@ -10,10 +19,9 @@ abstract class Option extends Asset{
 	protected double strikePricePerShare;	
 	protected int shareLimit;
 	protected double premiumPerShare;
-	//private String optionType;
 	
 	public Option(Stock stock, LocalDate purchaseDate, double strikePricePerShare, int shareLimit, double premiumPerShare, LocalDate strikeDate) {
-		super(stock.getAssetCode(), stock.getLabel(), stock.getCurrentValue());
+		super(stock.getAssetId(),stock.getAssetCode(), stock.getLabel(), stock.getCurrentValue());
 		this.purchaseDate = purchaseDate;
 		this.strikeDate = strikeDate;
 		this.strikePricePerShare = strikePricePerShare;
@@ -44,28 +52,6 @@ abstract class Option extends Asset{
 		return stock;
 	}
 	
-	/**
-	 * 
-	 * 
-	 * This gets the original price of the option, no matter if it's a call or a put
-	 * 
-	 * 
-	 * 
-	 */
-	
-//	public double getOrigPrice() {
-//		
-//		return this.getPremiumPerShare() * this.getShareLimit();
-//		
-//	}
-	
-	/**
-	 * 
-	 * 
-	 * This calculates the total gain/loss of the option
-	 * 
-	 * 
-	 */
 	
 	public abstract double getGain();
 		

@@ -2,6 +2,15 @@ package com.iffi;
 
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @author Martin Herz, Michael Endacott
+ *
+ * This class forms our Summary and Individual Reports. The class's purpose is to output all accounts and their corresponding information 
+ * Into a report
+ */
+
 public class Reports {
 	
 	public List<Account> accounts;

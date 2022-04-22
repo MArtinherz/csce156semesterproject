@@ -26,7 +26,7 @@ public class Call extends Option{
 	public double getCostBasis() {
 		return this.getPremiumPerShare() * this.getShareLimit();
 	}
-	// Value - cost is gain
+
 	public double getValue() {
 		if(this.getCurrentValue() < this.getStrikePricePerShare()) {
 			return 0;
@@ -55,7 +55,7 @@ public class Call extends Option{
 	
 	public String toString() {
 		StringBuilder callbuild = new StringBuilder();
-		callbuild.append(this.getAssetCode() + " " + this.getLabel());
+		callbuild.append(this.getAssetCode() + " " + this.getLabel() + " " + this.getSymbol());
 		callbuild.append("\n");
 
 		callbuild.append("Buy upto " + this.getShareLimit() + " @" + this.getStrikePricePerShare() + " until " + this.getStrikeDate().toString());

@@ -16,20 +16,21 @@ public class Property extends Asset{
 	private LocalDate purchaseDate;
 	private double purchasePrise;
 	private double appraisalValue;
+	private Integer assetId;
 
-	public Property(String assetCode, String label,  double appraisalValue) {
-		super(assetCode, label, appraisalValue);
-
+	public Property(Integer assetId, String assetCode, String label,  double appraisalValue) {
+		super(assetId, assetCode, label, appraisalValue);
+	}
+	
+	public Property(String assetCode, String label, double appraisalValue) {
+		this(null, assetCode, label, appraisalValue);
 	}
 	
 	public Property(Property property, LocalDate purchaseDate, double purchasePrise) {
-		super(property.getAssetCode(), property.getLabel(),property.getCurrentValue());
+		super(property.getAssetId(), property.getAssetCode(), property.getLabel(),property.getCurrentValue());
 		this.purchaseDate = purchaseDate;
 		this.purchasePrise = purchasePrise;
 	}
-
-
-	
 
 
 	public String getType() {
@@ -55,19 +56,18 @@ public class Property extends Asset{
 
 	}
 
-	@Override
 	public double getCostBasis() {
 		return purchasePrise;
 	}
 
-	@Override
 	public double getValue() {
 		return this.getCurrentValue();
 	}
 
-	@Override
 	public double getReturnPercent() {
 		return this.getGain()/this.getCostBasis() * 100;
 	}
+
+
 
 }

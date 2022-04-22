@@ -30,11 +30,11 @@ import unl.cse.albums.DatabaseInfo;
  */
 
 
-public class AccountReport{
+public class EarlyAccountReport{
 	
 	private final Map<Integer, Account> accounts = new HashMap<Integer, Account>();
 	
-	public AccountReport(){
+	public EarlyAccountReport(){
 		loadAccounts();
 //		loadAssets();
 //		loadAccounts();

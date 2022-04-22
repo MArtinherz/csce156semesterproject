@@ -18,19 +18,27 @@ public class Crypto extends Asset{
 	private double exchangeOldRate;
 	private double totalCoins;
 	private LocalDate purchaseDate;
+	private Integer cryptoAssetId;
+	private Integer assetId;
 	
-	public Crypto(String assetCode, String label,  double exchangeRate, double exchangeFeeRate) {
-		super(assetCode, label, exchangeRate);
+	public Crypto(Integer assetId, String assetCode, String label,  double exchangeRate, double exchangeFeeRate) {
+		super(assetId, assetCode, label, exchangeRate);
 		this.exchangeFeeRate = exchangeFeeRate;
 	}
 	
+	public Crypto(String assetCode, String label,  double exchangeRate, double exchangeFeeRate) {
+		this(null, assetCode, label, exchangeRate, exchangeFeeRate);
+		
+	}
+	
 	public Crypto(Crypto c, double exchangeOldRate, double totalCoins, LocalDate purchaseDate) {
-		super(c.getAssetCode(), c.getLabel(), c.getCurrentValue());
+		super(c.getAssetId(), c.getAssetCode(), c.getLabel(), c.getCurrentValue());
 		this.exchangeOldRate = exchangeOldRate;
 		this.totalCoins = totalCoins;
 		this.purchaseDate = purchaseDate;
 		
 	}
+	
 
 
 	public double getExchangeFeeRate() {
@@ -50,8 +58,6 @@ public class Crypto extends Asset{
 	public String getType() {
 		return "Crypto";
 	}
-
-	
 
 	
 	public double getGain() {

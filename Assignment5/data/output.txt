@@ -2,7 +2,8 @@ AC012 Jordan, Michael Jordan, Michael $ 75.00, $ 766505.55, 806.85 percent, $ 86
 AC013 Smith, Katie Smith, Katie $ 10.00, $ 1359.50, 169.26 percent, $ 2162.70
 AC014 James, LeBron Jordan, Michael $ 7.50, $ 155.17, 10.99 percent, $ 1567.22
 AC015 Tebow, Katie James, LeBron $ 0.00, $ -35040.00, -573.49 percent, $ -28930.00
-			 Fees: 92.50 Total Gain: 836305.47 	 Total Value: 732980.22
+			 
+Fees: 92.50 	Total Gain: 836305.47 	 Total Value: 732980.22
 
 ==============================
 || Pro Account AC012 ||
@@ -78,7 +79,7 @@ C2  Dogecoin  Crypto
 Cost Basis:  1000.00 Coins @ $0.653200 on 2021-03-17
 Value Basis: 1000.000000 Coins @ $0.144700 less TBD       -77.85   $    144.70
 
-S2 Nike
+S2 Nike NIKE
 Buy upto 100.0 @120.00 until 2021-05-01
 Premium of 1.50 per share (150.00)
 Short Call Value: 100.0 shares
@@ -122,11 +123,12 @@ James , LeBron
 S4   T-Mobile   TM(Stock)
 Cost Basis:  10.00 shares @ 95.00 on 2021-03-18
 Value Basis (including dividend @ 0.00) : 10.00 shares @ 124.48 on TBD
-        31.03      $      294.80
+        31.03 %      $      294.80
 
 C3  Etherum  Crypto
 Cost Basis:  0.11 Coins @ $4200.450000 on 2021-06-21
-Value Basis: 0.110000 Coins @ $2931.060000 less TBD       -30.22   $    322.42
+Value Basis: 0.110000 Coins @ $2931.060000 less TBD       
+-30.22 %   $    322.42
 
 +----------------+
 |   Totals       |
@@ -160,17 +162,17 @@ No Beneficiary!
 |   Assets       |
 +----------------+
 
-S1 Tesla
+S1 Tesla TSLA
 Buy upto 200.0 @700.0 until 2022-05-17
 Premium of 15.35 per share (0.0)
 Short Put Value: 200.0 shares
 @ 860.0 - 700.0 - 15.35 = -28930.0
 -100.0%  Total Gain: $ -28930.0
 
-S1 Tesla
+S1 Tesla TSLA
 Buy upto 200.0 @1000.0 until 2022-04-29
 Premium of 30.55 per share (6110.0)
-Short Call Value: 200.0 shares
+Short Call (Not executed) Value: 200.0 shares
 @ 860.0 - 1000.0 - 30.55 = 0.0
 -100.0%  Total Gain: $ -6110.0
 

@@ -19,7 +19,6 @@ public class Put extends Option{
 	public Put(Stock stock, LocalDate purchaseDate, double strikePricePerShare, int shareLimit,
 			double premiumPerShare, LocalDate strikeDate) {
 		super(stock, purchaseDate, strikePricePerShare, shareLimit, premiumPerShare, strikeDate);
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -29,7 +28,7 @@ public class Put extends Option{
 
 	public String toString() {
 		StringBuilder callbuild = new StringBuilder();
-		callbuild.append(this.getAssetCode() + " " + this.getLabel());
+		callbuild.append(this.getAssetCode() + " " + this.getLabel() + " " + this.getSymbol());
 		callbuild.append("\n");
 
 		callbuild.append("Buy upto " + this.getShareLimit() + " @" + this.getStrikePricePerShare() + " until " + this.getStrikeDate().toString());
@@ -55,7 +54,6 @@ public class Put extends Option{
 		return "Short Put";
 	}
 
-	@Override
 	public double getCostBasis() {
 		return 0;
 	}
@@ -66,7 +64,6 @@ public class Put extends Option{
 	}
 
 
-	@Override
 	public double getValue() {
 		double costTotal = this.getPremiumPerShare() * this.getShareLimit();
 		if(this.getCurrentValue() < this.getStrikePricePerShare()) {
@@ -80,12 +77,7 @@ public class Put extends Option{
 
 
 
-
-
-
-	@Override
 	public double getReturnPercent() {
-		// TODO Auto-generated method stub
 		if(this.getValue() > 0) {
 			return 100.00;
 		}

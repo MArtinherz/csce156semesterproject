@@ -11,7 +11,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import com.google.gson.*;
 import com.thoughtworks.xstream.XStream;
@@ -28,17 +30,18 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class DataConverter {
 
-	private final PersonsList personsList;
 	private final List<Object> AllAssets = new ArrayList<Object>();
-	private Assets Assets;
 	private final List<Object> AllPersons = new ArrayList<Object>();
+	private final List<Account> accounts = new ArrayList();
+	private final List<Asset> genericassets = new ArrayList();
 	
 	public DataConverter(){
-		this.personsList = new PersonsList();
-		this.Assets = new Assets();
 		loadPersons();
 		loadAssets();
+		loadAccounts();
 	}
+	
+
 	
 	/**
 	 * 
@@ -71,42 +74,19 @@ public class DataConverter {
 			String state = tokens[5];
 			String zip = tokens[6];
 			String country = tokens[7];
-			
-//			Person p = new Person(personCode,lastName,firstName,address,city,state,zip,country);
-//			personsList.addPerson(p);
-//			AllPersons.add(p);
-			
-//			if(line.isBlank() != true) {
-//				String email = tokens[8];
-//				personsList.persons.addEmail(email);
-//				AllPersons.add(email);
-//			}
-//			else {
-//				}
-//			
-//		}
-	
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try {
-			Writer writer = Files.newBufferedWriter(Paths.get("data/Persons.json"));
-			gson.toJson(personsList, writer);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		XStream xstream = new XStream(new DomDriver());
-		
-		xstream.alias("PersonsList", List.class);
-		
-	
-		try {
-			xstream.toXML(AllPersons, new FileWriter("data/Persons.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			List<String> emails = new ArrayList<String>();
+			for(int j = 8; j<tokens.length; j++) {
+				String email = tokens[j];
+				emails.add(email);
+			}
+			Address a = new Address(address, city, state, zip, country);
+			Person p = new Person(personCode,lastName,firstName,a, emails);
+			persons.put(personCode, p);
+
 		}
 	}
-
+	
+ 
 	/**
 	 * 
 	 * This is our Assets Parser. We load in the assets .csv file
@@ -136,24 +116,29 @@ public class DataConverter {
 				String label = tokens[2];
 				double appraisedValue = Double.parseDouble(tokens[3]);
 				Property p = new Property(code, label, appraisedValue);
-
+				assets.put(code, p);
+				
+				genericassets.add(p);
+ 
 			}
 			else if(tokens[1].equals("S")) {
 				String code = tokens[0];
 				String label = tokens[2];
 				String symbol = tokens[3];
 				double sharePrice = Double.parseDouble(tokens[4]);
-				Stock p = new Stock(code, label, symbol, sharePrice);
-				System.out.println(code);
-
-
+				Stock p = new Stock(code, label, sharePrice);
+				assets.put(code, p);
+				genericassets.add(p);
+ 
 			}
 			else if(tokens[1].equals("C")) {
 				String code = tokens[0];
 				String label = tokens[2];
 				double exchangeRate = Double.parseDouble(tokens[3]);
 				double exchangeFeeRate = Double.parseDouble(tokens[4]);
-
+				Crypto p = new Crypto(code, label, exchangeRate, exchangeFeeRate);
+				assets.put(code, p);
+				genericassets.add(p);
 			}
 			
 			
@@ -162,33 +147,79 @@ public class DataConverter {
 			}
 		}
 		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		try {
-			Writer writer = Files.newBufferedWriter(Paths.get("data/Assets.json"));
-			gson.toJson(Assets, writer);
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		
-		XStream xstream = new XStream(new DomDriver());
-		
-		xstream.alias("Property", Property.class);
-		xstream.alias("Stock", Stock.class);
-		xstream.alias("Crypto", Crypto.class);
-		xstream.alias("Assets", List.class);
-		
-
-		try {
-			xstream.toXML(AllAssets, new FileWriter("data/Assets.xml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		s.close();
 	}
-
+	private void loadAccounts() {
+		Scanner s = null;
+		try {
+			s = new Scanner(new File("data/Accounts.csv"));
+		}
+		catch (FileNotFoundException e) {
+			throw new RuntimeException(e);
+		}
+		String firstLine = s.nextLine();
+		String findTotal [] = firstLine.split(",");
+		int count = Integer.parseInt(findTotal[0]);
+		
+		for(int i = 0; i < count; i++) {
+			String line = s.nextLine().replace(" ", "");
+			String tokens[] = line.split(",");
+			String acctNumber = tokens[0];
+			String accountType = tokens[1];
+			String owner = tokens[2];
+			String managerCode = tokens[3];
+			String beneficiaryCode = tokens[4];
+			Person person = persons.get(owner);
+			Person manager = persons.get(managerCode);
+			Person bene = persons.get(bene);
+			Account account = new Account(person, acctNumber, accountType, manager, bene);
+			
+			for(int j = 5; j<tokens.length; j++) {
+				String iD = tokens[j];
+				if(assets.containsKey(iD)) {
+					if(assets.get(iD) instanceof Stock) {
+						Stock stock = (Stock) assets.get(iD);
+						if(tokens[j + 1].equals("P")) {
+							Option put = new Put(stock, tokens[j + 1], LocalDate.parse(tokens[j + 2]),
+									Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]), LocalDate.parse(tokens[j + 6]));
+							account.addAsset(put);
+						}
+						else if(tokens[j + 1].equals("C")) {
+							Option call = new Call(stock, tokens[j + 1], LocalDate.parse(tokens[j + 2]),
+									Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]), LocalDate.parse(tokens[j + 6]));
+							account.addAsset(call);
+						}
+						else if(tokens[j + 1].equals("S")) {
+							Stock stockUpd = new Stock(stock, LocalDate.parse(tokens[j + 2]), Double.parseDouble(tokens[j + 3]), Integer.parseInt(tokens[j + 4]), Double.parseDouble(tokens[j + 5]) );
+							account.addAsset(stockUpd);
+//							System.out.println(stockUpd.toString());
+							
+						}
+					}
+					
+						
+					
+					else if(assets.get(iD) instanceof Crypto){
+						Crypto c = (Crypto) assets.get(iD);
+						Crypto crypto = new Crypto(c, Double.parseDouble(tokens[j + 2]), Double.parseDouble(tokens[j + 3]), LocalDate.parse(tokens[j + 1]) );
+						account.addAsset(crypto);
+					}
+					else if(assets.get(iD) instanceof Property){
+						Property p = (Property) assets.get(iD);
+						Property prop = new Property(p, LocalDate.parse(tokens[j + 1]), Double.parseDouble(tokens[j + 2]));
+						account.addAsset(prop);
+					}
+					else {
+					;
+				}
+				}
+				
+			}
+			accounts.add(account);
+			
+	}
 	public static void main(String[] args) {
-		DataConverter demo = new DataConverter();
+//		DataConverter demo = new DataConverter();
     }
 }
 

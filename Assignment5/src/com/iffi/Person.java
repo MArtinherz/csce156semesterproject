@@ -17,17 +17,30 @@ public class Person {
 	private String firstName;
 	private List<String> email;
 	private Address addy;
+	private Integer personId;
+	
+	public Person(Integer personId, String personCode,String lastName,String firstName, Address addy, List<String> email) {
+		super();
+		this.personCode = personCode;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.addy = addy;
+		this.personId = personId;
+	}
+	
 
 
-
-	public Person(String personCode,String lastName,String firstName, Address addy, List<String> email) {
-			this.personCode = personCode;
-			this.lastName = lastName;
-			this.firstName = firstName;
-			this.email = email;
-			this.addy = addy;
+	public Person(String personCode,String lastName,String firstName) {
+		this(null, personCode, lastName, firstName, null, null);
+		
 		}
-
+	
+	public Person(String personCode,String lastName,String firstName, Address addy, List<String> email) {
+		this(null, personCode, lastName, firstName, addy, email);
+		
+		}
+	
 	public String getPersonCode() {
 			return this.personCode;
 		}
@@ -55,6 +68,12 @@ public class Person {
 	public String toString() {
 		return "Person [personCode=" + personCode + ", lastName=" + lastName + ", firstName=" + firstName + ", email="
 				+ email + ", addy=" + addy + "]";
+	}
+
+
+
+	public Integer getPersonId() {
+		return personId;
 	}
 	
 

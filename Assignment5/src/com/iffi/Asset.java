@@ -15,13 +15,16 @@ abstract class Asset{
 	private String assetCode;
 	private String label;
 	private double currentValue;
+	private Integer assetId;
 	
-	public Asset(String assetCode, String label, double currentValue) {
+	public Asset(Integer assetId, String assetCode, String label, double currentValue) {
 		super();
 		this.assetCode = assetCode;
 		this.label = label;
 		this.currentValue = currentValue;
+		this.assetId = assetId;
 	}
+	
 	
 	public Asset(Asset asset) {
 		this.assetCode = asset.assetCode;
@@ -51,9 +54,12 @@ abstract class Asset{
 	}
 	public abstract double getReturnPercent();
 	
-	// Add cost-basis and gain abstract functions, will be seen all over
 	
 	public abstract String toString();
+
+	public Integer getAssetId() {
+		return assetId;
+	}
 	
 	
 

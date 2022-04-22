@@ -20,13 +20,18 @@ public class Stock extends Asset{
 	private double originalPrice;
 	private double shareTotal;
 	private double dividend;
+	private Integer assetId;
 
+	public Stock(Integer assetId, String assetCode, String label, double sharePrice) {
+		super(assetId, assetCode, label, sharePrice);
+	}
+	
 	public Stock(String assetCode, String label, double sharePrice) {
-		super(assetCode, label, sharePrice);
+		this(null, assetCode, label, sharePrice);
 	}
 	
 	public Stock(Stock stock, LocalDate purchaseDate, String symbol, double originalPrice, double shareTotal, double dividend) {
-		super(stock.getAssetCode(), stock.getLabel(), stock.getCurrentValue());
+		super(stock.getAssetId(), stock.getAssetCode(), stock.getLabel(), stock.getCurrentValue());
 		this.symbol = symbol;
 		this.originalPrice = originalPrice;
 		this.shareTotal = shareTotal;

@@ -5,6 +5,16 @@ import java.util.List;
 
 
 
+/**
+ * 
+ * 
+ * 
+ * @author Martin Herz, Michael Endacott
+ * 
+ * This is our Account class, which stores information only related to account and models a generic Account in our financial database.
+ *
+ */
+
 public class Account{
 
 	private String accountCode;
@@ -13,14 +23,21 @@ public class Account{
 	private Person person;
 	private Person manager;
 	private List<Asset> assets;
+	private Integer AccountId;
 	
-	public Account(Person person, String accountCode,  String accountType, Person manager, Person beneficiary) {
+	public Account(Integer AccountId, Person person, String accountCode,  String accountType, Person manager, Person beneficiary) {
+		super();
+		this.AccountId = AccountId;
 		this.person = person;
 		this.accountType = accountType;
 		this.accountCode = accountCode;
 		this.beneficiary = beneficiary;
 		this.manager = manager;
 		this.assets = new ArrayList<Asset>();
+	}
+	
+	public Account(Person person, String accountCode,  String accountType, Person manager, Person beneficiary) {
+		this(null, person, accountCode, accountType, manager, beneficiary);
 	}
 	
 
@@ -74,7 +91,7 @@ public class Account{
 	/**
 	 * 
 	 * 
-	 * This returns our Account Cost
+	 * This returns our Account Cost Basis
 	 */
 	public double getCostBasis() {
 		double cost = 0.0;
@@ -128,12 +145,14 @@ public class Account{
 	}
 	
 	
+
 	
 	public String toString(){
 		return String.format("%s %s, %s %s, %s $ %.2f, $ %.2f, %.2f percent, $ %.2f",  
 				this.getAccountCode(), this.getOwnerr().getLastName(), this.getOwnerr().getFirstName(), this.getManager().getLastName(), this.getManager().getFirstName(),
 				this.FeeCalc(),this.getGain(), this.getReturnPercent(),this.getValue());
 	}
+	
  
 	public String toIndividualInfo() {
 		StringBuilder sb = new StringBuilder();
@@ -207,6 +226,10 @@ public class Account{
 	
 	private Person getOwnerr() {
 		return person;
+	}
+
+	public Integer getAccountId() {
+		return AccountId;
 	}
 
 
